@@ -1,15 +1,20 @@
 import type { Model } from 'mongoose'
 
-import { Injectable, NotFoundException } from '@nestjs/common'
+import {
+  Injectable,
+  NotFoundException,
+  UnprocessableEntityException
+} from '@nestjs/common'
 import { InjectModel } from '@nestjs/mongoose'
 
 import { hash } from 'argon2'
+import { v2 } from 'cloudinary'
 
 import { SignupDto } from 'auth/auth.dto'
 
 import { User } from 'schemas'
 
-import { CalculateDailyNormsDto } from './user.dto'
+import { CalculateDailyNormsDto, UpdateUserDto } from './user.dto'
 
 @Injectable()
 export class UserService {
@@ -18,10 +23,10 @@ export class UserService {
   async calculateDailyNorms(dto: CalculateDailyNormsDto) {
     const dailyNorm = this.getBasalMetabolicRateByGender(dto)
 
-    return dailyNorm
+    return { dailyCalorieIntake: Math.floor(dailyNorm!) }
   }
 
-  async getUserProfile(id: string) {
+  async me(id: string) {
     const user = await this.findById(id)
 
     if (!user) throw new NotFoundException('User not found')
@@ -29,37 +34,39 @@ export class UserService {
     return user
   }
 
-  //   async update(file: Express.Multer.File, id: string, dto: UpdateUserDto) {
-  //     let data = dto
+  async update(file: Express.Multer.File, userId: string, dto: UpdateUserDto) {
+    let avatar
 
-  //     let avatarURL
+    if (file) {
+      await new Promise(resolve => {
+        v2.uploader
+          .upload_stream((error, uploadResult) => {
+            if (error) throw new UnprocessableEntityException(error.message)
 
-  //     if (file) {
-  //       await new Promise(resolve => {
-  //         v2.uploader
-  //           .upload_stream((error, uploadResult) => {
-  //             if (error) throw new UnprocessableEntityException(error.message)
+            return resolve((avatar = uploadResult?.url))
+          })
+          .end(file.buffer)
+      })
+    }
 
-  //             return resolve((avatarURL = uploadResult?.url))
-  //           })
-  //           .end(file.buffer)
-  //       })
-  //     }
+    const user = await this.userModel.findByIdAndUpdate(
+      userId,
+      { ...dto, avatar },
+      { new: true }
+    )
 
-  //     if (dto.password) {
-  //       data = { ...dto, password: await hash(dto.password) }
-  //     }
+    if (!user) throw new NotFoundException('User not found')
 
-  //     const user = await this.userModel.findByIdAndUpdate(
-  //       id,
-  //       { ...data, userTheme: data.theme, avatarURL },
-  //       { new: true }
-  //     )
+    return user
+  }
 
-  //     if (!user) throw new NotFoundException('User not found')
+  findById(id: string) {
+    return this.userModel.findById(id)
+  }
 
-  //     return user
-  //   }
+  findOneByEmail(email: string) {
+    return this.userModel.findOne({ email })
+  }
 
   async createNewUser(dto: SignupDto) {
     const hashedPassword = await hash(dto.password)
@@ -83,7 +90,6 @@ export class UserService {
 
     const age = this.getAge(birthDate)
 
-    console.log(age)
     if (gender === 'male') {
       return (
         (10 * currentWeight + 6.25 * height - 5 * age + 5) *
@@ -110,13 +116,5 @@ export class UserService {
     }
 
     return age
-  }
-
-  findById(id: string) {
-    return this.userModel.findById(id)
-  }
-
-  findOneByEmail(email: string) {
-    return this.userModel.findOne({ email })
   }
 }

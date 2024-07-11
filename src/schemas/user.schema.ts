@@ -22,6 +22,9 @@ export class User {
 
   @Prop({ required: true, minlength: 6 })
   password: string
+
+  @Prop()
+  avatar: string
 }
 
 export const UserSchema = SchemaFactory.createForClass(User)
