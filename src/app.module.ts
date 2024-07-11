@@ -4,7 +4,8 @@ import { MongooseModule } from '@nestjs/mongoose'
 
 import { AuthModule } from 'auth/auth.module'
 import { UserModule } from 'user/user.module'
-import { ProductsModule } from './products/products.module';
+
+import { ProductsModule } from './products/products.module'
 
 @Module({
   imports: [
