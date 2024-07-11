@@ -4,13 +4,15 @@ import { MongooseModule } from '@nestjs/mongoose'
 
 import { AuthModule } from 'auth/auth.module'
 import { UserModule } from 'user/user.module'
+import { ProductsModule } from './products/products.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
     MongooseModule.forRoot(process.env.DATABASE_URL!),
     AuthModule,
-    UserModule
+    UserModule,
+    ProductsModule
   ]
 })
 export class AppModule {}

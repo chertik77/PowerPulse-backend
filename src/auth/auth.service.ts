@@ -62,11 +62,11 @@ export class AuthService {
     const data = { id: userId }
 
     const accessToken = this.jwt.sign(data, {
-      expiresIn: '1h'
+      expiresIn: this.configService.get('ACCESS_TOKEN_EXPIRES_IN')
     })
 
     const refreshToken = this.jwt.sign(data, {
-      expiresIn: '7d'
+      expiresIn: this.configService.get('REFRESH_TOKEN_EXPIRES_IN')
     })
 
     return { accessToken, refreshToken }
