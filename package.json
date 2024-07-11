@@ -7,11 +7,11 @@
   "license": "UNLICENSED",
   "scripts": {
     "build": "nest build",
-    "format": "prettier --write \"app/**/*.ts\"",
-    "format:check": "prettier --check \"app/**/*.ts\"",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "format:check": "prettier --check \"src/**/*.ts\"",
+    "lint": "eslint \"src/**/*.ts\" --fix -f mo && tsc --noemit",
     "start": "nest start",
     "start:dev": "nest start --watch",
-    "lint": "eslint \"app/**/*.ts\" --fix -f mo && tsc --noemit",
     "prepare": "husky"
   },
   "dependencies": {
