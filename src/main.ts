@@ -32,7 +32,6 @@ bootstrap()
 
 mongoose.set('toJSON', {
   virtuals: true,
-  versionKey: false,
   transform(_, ret) {
     if (ret.password) delete ret.password
 

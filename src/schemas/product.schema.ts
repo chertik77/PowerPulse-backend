@@ -15,7 +15,7 @@ export class Product {
   title: string
 
   @Prop({ type: Object, required: true })
-  groupBloodNotAllowed: Record<1 | 2 | 3 | 4, boolean>
+  groupBloodNotAllowed: Record<'1' | '2' | '3' | '4', boolean>
 }
 
 export const ProductSchema = SchemaFactory.createForClass(Product)

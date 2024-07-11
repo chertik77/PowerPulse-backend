@@ -1,8 +1,10 @@
+import type { Provider } from '@nestjs/common'
+
 import { ConfigService } from '@nestjs/config'
 
 import { v2 } from 'cloudinary'
 
-export const CloudinaryProvider = {
+export const CloudinaryProvider: Provider = {
   provide: 'Cloudinary',
   useFactory: (configService: ConfigService) => {
     v2.config({

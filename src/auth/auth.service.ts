@@ -72,12 +72,12 @@ export class AuthService {
     return { accessToken, refreshToken }
   }
 
-  private async validateUser(dto: SigninDto) {
-    const user = await this.userService.findOneByEmail(dto.email)
+  private async validateUser({ email, password }: SigninDto) {
+    const user = await this.userService.findOneByEmail(email)
 
     if (!user) throw new NotFoundException('User not found')
 
-    const isValidPassword = await verify(user.password, dto.password)
+    const isValidPassword = await verify(user.password, password)
 
     if (!isValidPassword) throw new UnauthorizedException('Invalid password')
 
