@@ -22,9 +22,12 @@ export class UserService {
   constructor(@InjectModel(User.name) private userModel: Model<User>) {}
 
   async dailyCalorieIntake(dto: DailyCalorieIntake, userId: string) {
-    const dailyCalorieIntake = this.getBasalMetabolicRateByGender(dto)
+    const dailyCalorieIntake = Math.floor(
+      this.getBasalMetabolicRateByGender(dto) as number
+    )
 
     await this.userModel.findByIdAndUpdate(userId, {
+      dailyCalorieIntake,
       sex: dto.sex,
       height: dto.height,
       currentWeight: dto.currentWeight,
@@ -34,7 +37,7 @@ export class UserService {
       activityLevel: dto.activityLevel
     })
 
-    return { dailyCalorieIntake: Math.floor(dailyCalorieIntake!) }
+    return { dailyCalorieIntake }
   }
 
   async me(id: string) {

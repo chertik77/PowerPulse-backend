@@ -48,6 +48,12 @@ export class User {
   })
   birthday: string
 
+  @Prop()
+  dailyCalorieIntake: number
+
+  @Prop({ default: 110 })
+  dailyNormOfSports: number
+
   @Prop({ enum: blood })
   blood: Blood
 
