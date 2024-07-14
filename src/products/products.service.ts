@@ -16,19 +16,30 @@ export class ProductsService {
     private readonly userService: UserService
   ) {}
 
-  getAllProducts(
-    { title, category, recommendedByBloodType }: SearchProductDto,
+  async getAllProducts(dto: SearchProductDto, userId: string) {
+    const query = await this.getProductsByQuery(dto, userId)
+
+    return query
+  }
+
+  private async getProductsByQuery(
+    { title, category, recommendedByBlood }: SearchProductDto,
     userId: string
   ) {
-    const {} = this.userService.findById(userId)
+    const user = await this.userService.findById(userId)
+
     const query = this.productModel.find()
 
     if (title) query.where('title').equals(new RegExp(title, 'i'))
 
     if (category) query.where('category').equals(category)
 
-    if (recommendedByBloodType) {
-      query.where('groupBloodNotAllowed[2]').equals(false)
+    if (recommendedByBlood === 'All') return query
+
+    if (recommendedByBlood) {
+      query
+        .where(`groupBloodNotAllowed.${user?.blood.toString()}`)
+        .equals(recommendedByBlood === 'Recommended' ? true : false)
     }
 
     return query

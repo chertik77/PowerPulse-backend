@@ -15,5 +15,5 @@ export class SearchProductDto {
   @IsOptional()
   @IsString()
   @IsIn(['All', 'Recommended', 'Not recommended'])
-  recommendedByBloodType?: 'All' | 'Recommended' | 'Not recommended'
+  recommendedByBlood?: 'All' | 'Recommended' | 'Not recommended'
 }
