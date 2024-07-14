@@ -9,21 +9,32 @@ import { InjectModel } from '@nestjs/mongoose'
 
 import { hash } from 'argon2'
 import { v2 } from 'cloudinary'
+import { getAge } from 'helpers'
 
 import { SignupDto } from 'auth/auth.dto'
 
 import { User } from 'schemas'
 
-import { CalculateDailyNormsDto, UpdateUserDto } from './user.dto'
+import { DailyCalorieIntake, UpdateUserDto } from './user.dto'
 
 @Injectable()
 export class UserService {
   constructor(@InjectModel(User.name) private userModel: Model<User>) {}
 
-  async calculateDailyNorms(dto: CalculateDailyNormsDto) {
-    const dailyNorm = this.getBasalMetabolicRateByGender(dto)
+  async dailyCalorieIntake(dto: DailyCalorieIntake, userId: string) {
+    const dailyCalorieIntake = this.getBasalMetabolicRateByGender(dto)
 
-    return { dailyCalorieIntake: Math.floor(dailyNorm!) }
+    await this.userModel.findByIdAndUpdate(userId, {
+      sex: dto.sex,
+      height: dto.height,
+      currentWeight: dto.currentWeight,
+      desiredWeight: dto.desiredWeight,
+      birthday: dto.birthday,
+      blood: dto.blood,
+      activityLevel: dto.activityLevel
+    })
+
+    return { dailyCalorieIntake: Math.floor(dailyCalorieIntake!) }
   }
 
   async me(id: string) {
@@ -69,52 +80,35 @@ export class UserService {
   }
 
   async createNewUser(dto: SignupDto) {
-    const hashedPassword = await hash(dto.password)
-
-    const user = await this.userModel.create({
+    return await this.userModel.create({
       ...dto,
-      password: hashedPassword
+      password: await hash(dto.password)
     })
-
-    return user
   }
 
   private getBasalMetabolicRateByGender({
     activityLevel,
-    birthDate,
+    birthday,
     height,
     currentWeight,
-    gender
-  }: CalculateDailyNormsDto) {
+    sex
+  }: DailyCalorieIntake) {
     const lifeStyleCoefficient = { 1: 1.2, 2: 1.375, 3: 1.55, 4: 1.725, 5: 1.9 }
 
-    const age = this.getAge(birthDate)
+    const age = getAge(birthday)
 
-    if (gender === 'male') {
+    if (sex === 'male') {
       return (
         (10 * currentWeight + 6.25 * height - 5 * age + 5) *
         lifeStyleCoefficient[activityLevel]
       )
     }
 
-    if (gender === 'female') {
+    if (sex === 'female') {
       return (
         (10 * currentWeight + 6.25 * height - 5 * age - 161) *
         lifeStyleCoefficient[activityLevel]
       )
     }
-  }
-
-  protected getAge(birthDate: string) {
-    const today = new Date()
-    const dateOfBirth = new Date(birthDate)
-    let age = today.getFullYear() - dateOfBirth.getFullYear()
-    const month = today.getMonth() - dateOfBirth.getMonth()
-
-    if (month < 0 || (month === 0 && today.getDate() < dateOfBirth.getDate())) {
-      age--
-    }
-
-    return age
   }
 }

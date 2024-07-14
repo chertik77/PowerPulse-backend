@@ -6,10 +6,14 @@ import {
   IsOptional,
   IsString,
   Min,
-  MinLength
+  MinLength,
+  Validate
 } from 'class-validator'
+import { activityLevel, blood, sex } from 'types'
 
-export class CalculateDailyNormsDto {
+import { Is16YearsOld } from 'decorators/age.decorator'
+
+export class DailyCalorieIntake {
   @IsNumber()
   @Min(150)
   height: number
@@ -23,18 +27,19 @@ export class CalculateDailyNormsDto {
   desiredWeight: number
 
   @IsDateString()
-  birthDate: string
+  @Validate(Is16YearsOld)
+  birthday: string
 
   @IsNumber()
-  @IsIn([1, 2, 3, 4])
-  bloodType: 1 | 2 | 3 | 4
+  @IsIn(blood)
+  blood: 1 | 2 | 3 | 4
 
   @IsString()
-  @IsIn(['male', 'female'])
-  gender: 'male' | 'female'
+  @IsIn(sex)
+  sex: 'male' | 'female'
 
   @IsNumber()
-  @IsIn([1, 2, 3, 4, 5])
+  @IsIn(activityLevel)
   activityLevel: 1 | 2 | 3 | 4 | 5
 }
 
@@ -64,20 +69,21 @@ export class UpdateUserDto {
 
   @IsDateString()
   @IsOptional()
-  birthDate?: string
+  @Validate(Is16YearsOld)
+  birthday?: string
 
   @IsNumber()
-  @IsIn([1, 2, 3, 4])
+  @IsIn(blood)
   @IsOptional()
-  bloodType?: 1 | 2 | 3 | 4
+  blood?: 1 | 2 | 3 | 4
 
   @IsString()
-  @IsIn(['male', 'female'])
+  @IsIn(sex)
   @IsOptional()
-  gender?: 'male' | 'female'
+  sex?: 'male' | 'female'
 
   @IsNumber()
-  @IsIn([1, 2, 3, 4, 5])
+  @IsIn(activityLevel)
   @IsOptional()
   activityLevel?: 1 | 2 | 3 | 4 | 5
 }

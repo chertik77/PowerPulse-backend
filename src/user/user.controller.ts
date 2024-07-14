@@ -1,10 +1,9 @@
 import * as NestjsCommon from '@nestjs/common'
-// import { UpdateUserDto } from './user.dto'
 import { FileInterceptor } from '@nestjs/platform-express'
 
 import { Auth, CurrentUser } from 'decorators'
 
-import { CalculateDailyNormsDto, UpdateUserDto } from './user.dto'
+import { DailyCalorieIntake, UpdateUserDto } from './user.dto'
 import { UserService } from './user.service'
 
 @NestjsCommon.Controller('user')
@@ -13,15 +12,13 @@ import { UserService } from './user.service'
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
-  @NestjsCommon.Post('calculate-daily-norms')
-  async calculateDailyNorms(
-    @NestjsCommon.Body() calculateDailyNormsDto: CalculateDailyNormsDto
+  @NestjsCommon.Post('daily-calorie-intake')
+  async dailyCalorieIntake(
+    @CurrentUser('id') userId: string,
+    @NestjsCommon.Body()
+    dailyCalorieIntake: DailyCalorieIntake
   ) {
-    const dailyNorms = await this.userService.calculateDailyNorms(
-      calculateDailyNormsDto
-    )
-
-    return dailyNorms
+    return await this.userService.dailyCalorieIntake(dailyCalorieIntake, userId)
   }
 
   @NestjsCommon.Get('me')
