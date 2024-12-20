@@ -11,23 +11,34 @@ import {
   UnauthorizedException
 } from '@nestjs/common'
 import {
+  ApiBadRequestResponse,
+  ApiBearerAuth,
+  ApiConflictResponse,
   ApiCreatedResponse,
   ApiNoContentResponse,
+  ApiNotFoundResponse,
   ApiOkResponse,
-  ApiTags
+  ApiOperation,
+  ApiTags,
+  ApiUnauthorizedResponse
 } from '@nestjs/swagger'
+
+import * as Examples from 'examples'
 
 import { AuthService } from './auth.service'
 import { SigninDto, SignupDto } from './dto'
 
 @Controller('auth')
-@ApiTags('auth')
+@ApiTags('Auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   @Post('signup')
   @HttpCode(HttpStatus.CREATED)
-  @ApiCreatedResponse()
+  @ApiOperation({ summary: 'Create a new user' })
+  @ApiCreatedResponse(Examples.AuthResponseExample)
+  @ApiBadRequestResponse(Examples.SignupBadRequestResponseExample)
+  @ApiConflictResponse(Examples.ConflictResponseExample)
   async signup(
     @Body()
     dto: SignupDto,
@@ -42,8 +53,12 @@ export class AuthController {
 
   @Post('signin')
   @HttpCode(HttpStatus.OK)
-  @ApiOkResponse()
-  async login(
+  @ApiOperation({ summary: 'Signin a user' })
+  @ApiOkResponse(Examples.AuthResponseExample)
+  @ApiNotFoundResponse(Examples.UserNotFoundResponseExample)
+  @ApiBadRequestResponse(Examples.SigninBadRequestResponseExample)
+  @ApiUnauthorizedResponse(Examples.UnauthorizedResponseExample)
+  async signin(
     @Body()
     dto: SigninDto,
     @Res({ passthrough: true }) res: Response
@@ -58,6 +73,9 @@ export class AuthController {
   @Post('tokens')
   @HttpCode(HttpStatus.CREATED)
   @ApiCreatedResponse()
+  @ApiBearerAuth()
+  @ApiOperation({ summary: 'Get fresh and new tokens' })
+  @ApiUnauthorizedResponse(Examples.UnauthorizedResponseExample)
   async getNewTokens(
     @Req() req: Request,
     @Res({ passthrough: true }) res: Response
@@ -81,6 +99,8 @@ export class AuthController {
 
   @Post('signout')
   @HttpCode(HttpStatus.NO_CONTENT)
+  @ApiBearerAuth()
+  @ApiOperation({ summary: 'Signout a user' })
   @ApiNoContentResponse()
   async signout(@Res({ passthrough: true }) res: Response) {
     this.authService.removeRefreshTokenFromResponse(res)
