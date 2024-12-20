@@ -25,7 +25,7 @@
     "",
     "^(auth|user)(/.*)?$",
     "",
-    "^(config|guards|schemas|decorators)(/.*)?$",
+    "^(config|guards|schemas|decorators|types)(/.*)?$",
     "",
     "^[.]"
   ],

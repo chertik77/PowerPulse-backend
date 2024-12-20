@@ -3,8 +3,7 @@ import type { NestExpressApplication } from '@nestjs/platform-express'
 import { NestFactory } from '@nestjs/core'
 
 import * as cookieParser from 'cookie-parser'
-import * as mongoose from 'mongoose'
-import * as morgan from 'morgan'
+import * as logger from 'morgan'
 
 import { AppModule } from './app.module'
 
@@ -15,12 +14,12 @@ async function bootstrap() {
 
   app.use(cookieParser())
 
-  app.use(morgan('dev'))
+  app.use(logger('dev'))
 
   app.disable('x-powered-by')
 
   app.enableCors({
-    origin: process.env.ALLOWED_ORIGINS!,
+    origin: process.env.ALLOWED_ORIGINS,
     credentials: true,
     exposedHeaders: 'Set-Cookie'
   })
@@ -29,12 +28,3 @@ async function bootstrap() {
 }
 
 bootstrap()
-
-mongoose.set('toJSON', {
-  virtuals: true,
-  transform(_, ret) {
-    if (ret.password) delete ret.password
-
-    delete ret._id
-  }
-})
