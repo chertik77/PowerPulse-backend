@@ -20,7 +20,29 @@ export const UserMeResponseExample = {
   }
 }
 
-export const UserDailyIntakeBadRequestResponseExample = {
+export const UpdatedUserResponseExample = {
+  content: {
+    'application/json': {
+      example: {
+        id: '6765fd94762c5c11fd53999b',
+        name: 'Jake',
+        email: 'test@gmail.com',
+        height: 180,
+        currentWeight: 75,
+        desiredWeight: 73,
+        birthday: null,
+        sex: null,
+        blood: null,
+        activityLevel: null,
+        dailyCalorieIntake: null,
+        dailyExerciseTime: 110,
+        avatar: 'http://res.cloudinary.com/dtsgte7py/....u7.jpg'
+      }
+    }
+  }
+}
+
+export const UserBadRequestResponseExample = {
   content: {
     'application/json': {
       example: {
@@ -43,6 +65,18 @@ export const UserDailyIntakeResponseExample = {
       example: {
         dailyIntake: 2817,
         dailyExerciseTime: 110
+      }
+    }
+  }
+}
+
+export const UserUnprocessableEntityResponseExample = {
+  content: {
+    'application/json': {
+      example: {
+        message: 'Validation failed (expected type is /(jpeg|png)/)',
+        error: 'Unprocessable Entity',
+        statusCode: 422
       }
     }
   }

@@ -1,12 +1,17 @@
-import { Injectable, NotFoundException } from '@nestjs/common'
+import {
+  Injectable,
+  NotFoundException,
+  UnprocessableEntityException
+} from '@nestjs/common'
 
 import { hash } from 'argon2'
+import { v2 } from 'cloudinary'
 import { PrismaService } from 'prisma/prisma.service'
 import { getAgeFromBirthDate } from 'utils'
 
 import { SignupDto } from 'auth/dto'
 
-import { UserCharacteristicsDto } from './dto'
+import { UpdateUserDto, UserCharacteristicsDto } from './dto'
 
 @Injectable()
 export class UserService {
@@ -38,6 +43,31 @@ export class UserService {
     })
 
     return { dailyIntake, dailyExerciseTime: updatedUser.dailyExerciseTime }
+  }
+
+  async update(file: Express.Multer.File, userId: string, dto: UpdateUserDto) {
+    let avatar: string | null = null
+
+    if (file) {
+      await new Promise(resolve => {
+        v2.uploader
+          .upload_stream((error, uploadResult) => {
+            if (error) throw new UnprocessableEntityException(error.message)
+            return resolve((avatar = uploadResult?.url as string))
+          })
+          .end(file.buffer)
+      })
+    }
+
+    const user = await this.prisma.user.update({
+      where: { id: userId },
+      data: { ...dto, avatar },
+      omit: { password: true }
+    })
+
+    if (!user) throw new NotFoundException('User not found')
+
+    return user
   }
 
   async findById(id: string) {
