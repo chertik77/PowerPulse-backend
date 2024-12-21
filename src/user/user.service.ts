@@ -29,7 +29,7 @@ export class UserService {
     userCharacteristics: UserCharacteristicsDto,
     userId: string
   ) {
-    const dailyIntake = Math.floor(
+    const dailyCalorieIntake = Math.floor(
       this.getBasalMetabolicRateByGender(userCharacteristics)!
     )
 
@@ -37,12 +37,12 @@ export class UserService {
       where: { id: userId },
       data: {
         ...userCharacteristics,
-        dailyCalorieIntake: dailyIntake,
+        dailyCalorieIntake,
         birthday: new Date(userCharacteristics.birthday)
       }
     })
 
-    return { dailyIntake, dailyExerciseTime }
+    return { dailyCalorieIntake, dailyExerciseTime }
   }
 
   async update(file: Express.Multer.File, userId: string, dto: UpdateUserDto) {

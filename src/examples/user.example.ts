@@ -63,7 +63,7 @@ export const UserDailyIntakeResponseExample = {
   content: {
     'application/json': {
       example: {
-        dailyIntake: 2817,
+        dailyCalorieIntake: 2817,
         dailyExerciseTime: 110
       }
     }
