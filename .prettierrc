@@ -23,9 +23,9 @@
     "",
     "<THIRD_PARTY_MODULES>",
     "",
-    "^(auth|user)(/.*)?$",
+    "^(guards|decorators)(/.*)?$",
     "",
-    "^(config|guards|schemas|decorators|types)(/.*)?$",
+    "^(constants|config|schemas|types|utils)(/.*)?$",
     "",
     "^[.]"
   ],
