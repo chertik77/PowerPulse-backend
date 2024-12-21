@@ -33,7 +33,7 @@ export class UserService {
       this.getBasalMetabolicRateByGender(userCharacteristics)!
     )
 
-    const updatedUser = await this.prisma.user.update({
+    const { dailyExerciseTime } = await this.prisma.user.update({
       where: { id: userId },
       data: {
         ...userCharacteristics,
@@ -42,7 +42,7 @@ export class UserService {
       }
     })
 
-    return { dailyIntake, dailyExerciseTime: updatedUser.dailyExerciseTime }
+    return { dailyIntake, dailyExerciseTime }
   }
 
   async update(file: Express.Multer.File, userId: string, dto: UpdateUserDto) {
