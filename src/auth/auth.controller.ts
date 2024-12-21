@@ -25,6 +25,8 @@ import {
 
 import * as Examples from 'examples'
 
+import { Auth } from 'guards'
+
 import { AuthService } from './auth.service'
 import { SigninDto, SignupDto } from './dto'
 
@@ -71,10 +73,11 @@ export class AuthController {
   }
 
   @Post('tokens')
+  @Auth()
   @HttpCode(HttpStatus.CREATED)
-  @ApiCreatedResponse()
   @ApiBearerAuth()
   @ApiOperation({ summary: 'Get fresh and new tokens' })
+  @ApiCreatedResponse(Examples.TokensResponseExample)
   @ApiUnauthorizedResponse(Examples.UnauthorizedResponseExample)
   async getNewTokens(
     @Req() req: Request,
@@ -98,6 +101,7 @@ export class AuthController {
   }
 
   @Post('signout')
+  @Auth()
   @HttpCode(HttpStatus.NO_CONTENT)
   @ApiBearerAuth()
   @ApiOperation({ summary: 'Signout a user' })

@@ -9,33 +9,25 @@ datasource db {
 }
 
 model User {
-  id                 String         @id @default(auto()) @map("_id") @db.ObjectId
+  id                 String    @id @default(auto()) @map("_id") @db.ObjectId
   name               String
-  email              String         @unique
+  email              String    @unique
   password           String
   height             Int?
-  currentWeight      Int?           @map("current_weight")
-  desiredWeight      Int?           @map("desired_weight")
+  currentWeight      Int?      @map("current_weight")
+  desiredWeight      Int?      @map("desired_weight")
   birthday           DateTime?
   sex                Sex?
-  activityLevel      ActivityLevel? @map("activity_level")
-  dailyCalorieIntake Int?           @map("daily_calorie_intake")
-  dailyExerciseTime  Int?           @default(110) @map("daily_exercise_time")
+  blood              Int?
+  activityLevel      Int?      @map("activity_level")
+  dailyCalorieIntake Int?      @map("daily_calorie_intake")
+  dailyExerciseTime  Int?      @default(110) @map("daily_exercise_time")
   avatar             String?
-  avatarPublicId     String?        @map("avatar_public_id")
 
   @@map("users")
 }
 
 enum Sex {
-  MALE
-  FEMALE
-}
-
-enum ActivityLevel {
-  SEDENTARY_LIFESTYLE
-  LIGHT_ACTIVITY
-  MODERATELY_ACTIVE
-  VERY_ACTIVE
-  EXTREMELY_ACTIVE
+  male
+  female
 }

@@ -8,20 +8,34 @@ export const AuthResponseExample = {
         user: {
           id: '6765fd94762c5c11fd53999b',
           name: 'Tom',
-          email: 'test@mail.com',
+          email: 'test@gmail.com',
           height: null,
           currentWeight: null,
           desiredWeight: null,
           birthday: null,
           sex: null,
+          blood: null,
           activityLevel: null,
           dailyCalorieIntake: null,
           dailyExerciseTime: 110,
-          avatar: null,
-          avatarPublicId: null
+          avatar: null
         },
         accessToken:
           'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NjVmZDk0NzYyYzVjMTFmZDUzOTk5YiIsImlhdCI6MTczNDczNzMwMCwiZXhwIjoxNzM0NzQwOTAwfQ.8yGePnlUNY6TxcBGL7VcIe5B1QvxNFoM2b63K8ZjrjA'
+      }
+    }
+  }
+}
+
+export const TokensResponseExample = {
+  headers: {
+    'Set-Cookie': { description: 'Refresh token', schema: { type: 'string' } }
+  },
+  content: {
+    'application/json': {
+      example: {
+        accessToken:
+          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZTc5OTFlOWNiMDQ4MWM0NmUzNjE0NiIsImlhdCI6MTcwOTY3NjgzMCwiZXhwIjoxNzA5NjgwNDMwfQ.jCQulMoUbRdq1DLJz4wRSAh1kGGRiJ1ARHs2cnHzfxk'
       }
     }
   }
