@@ -1,6 +1,7 @@
 import type { ValidationArguments, ValidationOptions } from 'class-validator'
 
 import { registerDecorator } from 'class-validator'
+
 import { getAgeFromBirthDate } from 'utils'
 
 export const IsMinimumAge =

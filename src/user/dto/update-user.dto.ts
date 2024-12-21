@@ -12,10 +12,11 @@ import {
   Min,
   MinLength
 } from 'class-validator'
-import { ACTIVITY_LEVEL, ActivityLevel } from 'constants/activityLevel'
-import { BLOOD, Blood } from 'constants/blood'
 
 import { IsMinimumAge } from 'decorators'
+
+import { ACTIVITY_LEVEL, ActivityLevel } from 'constants/activityLevel'
+import { BLOOD, Blood } from 'constants/blood'
 
 export class UpdateUserDto {
   @MinLength(2, { message: 'Name should be at least 2 characters long' })

@@ -3,10 +3,11 @@ import { ApiProperty } from '@nestjs/swagger'
 import { Sex } from '@prisma/client'
 import { Type } from 'class-transformer'
 import { IsDateString, IsEnum, IsIn, IsNumber, Min } from 'class-validator'
-import { ACTIVITY_LEVEL, ActivityLevel } from 'constants/activityLevel'
-import { BLOOD, Blood } from 'constants/blood'
 
 import { IsMinimumAge } from 'decorators'
+
+import { ACTIVITY_LEVEL, ActivityLevel } from 'constants/activityLevel'
+import { BLOOD, Blood } from 'constants/blood'
 
 export class UserCharacteristicsDto {
   @Min(150, { message: 'Height should be at least 150 cm' })

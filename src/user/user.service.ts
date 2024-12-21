@@ -5,11 +5,11 @@ import {
 } from '@nestjs/common'
 
 import { hash } from 'argon2'
+import { SignupDto } from 'auth/dto'
 import { v2 } from 'cloudinary'
 import { PrismaService } from 'prisma/prisma.service'
-import { getAgeFromBirthDate } from 'utils'
 
-import { SignupDto } from 'auth/dto'
+import { getAgeFromBirthDate } from 'utils'
 
 import { UpdateUserDto, UserCharacteristicsDto } from './dto'
 
