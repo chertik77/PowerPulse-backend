@@ -1,4 +1,5 @@
 import type { Response } from 'express'
+import type { EnvVariables } from 'types'
 
 import {
   ConflictException,
@@ -6,10 +7,10 @@ import {
   NotFoundException,
   UnauthorizedException
 } from '@nestjs/common'
+import { ConfigService } from '@nestjs/config'
 import { JwtService } from '@nestjs/jwt'
 
 import { verify } from 'argon2'
-import { TypedConfigService } from 'typed-config-service'
 
 import { UserService } from 'user/user.service'
 
@@ -18,7 +19,7 @@ import { SigninDto, SignupDto } from './dto'
 @Injectable()
 export class AuthService {
   constructor(
-    private readonly configService: TypedConfigService,
+    private readonly configService: ConfigService<EnvVariables>,
     private readonly jwt: JwtService,
     private readonly userService: UserService
   ) {}

@@ -1,9 +1,10 @@
 import type { JwtModuleOptions } from '@nestjs/jwt'
+import type { EnvVariables } from 'types'
 
-import { TypedConfigService } from 'typed-config-service'
+import { ConfigService } from '@nestjs/config'
 
 export const getJwtConfig = async (
-  configService: TypedConfigService
+  configService: ConfigService<EnvVariables>
 ): Promise<JwtModuleOptions> => ({
   secret: configService.get('JWT_SECRET')
 })
