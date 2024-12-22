@@ -18,7 +18,7 @@ model User {
   desiredWeight      Int?      @map("desired_weight")
   birthday           DateTime?
   sex                Sex?
-  blood              Int?
+  blood              Blood?
   activityLevel      Int?      @map("activity_level")
   dailyCalorieIntake Int?      @map("daily_calorie_intake")
   dailyExerciseTime  Int?      @default(110) @map("daily_exercise_time")
@@ -27,7 +27,32 @@ model User {
   @@map("users")
 }
 
+enum Blood {
+  A
+  B
+  AB
+  O
+}
+
 enum Sex {
   male
   female
+}
+
+model Product {
+  id                   String               @id @default(auto()) @map("_id") @db.ObjectId
+  weight               Int                  @default(100)
+  calories             Int
+  category             String
+  title                String
+  groupBloodNotAllowed GroupBloodNotAllowed @map("group_blood_not_allowed")
+
+  @@map("products")
+}
+
+type GroupBloodNotAllowed {
+  A  Boolean
+  B  Boolean
+  AB Boolean
+  O  Boolean
 }

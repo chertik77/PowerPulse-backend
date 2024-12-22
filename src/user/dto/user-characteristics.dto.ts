@@ -1,13 +1,12 @@
 import { ApiProperty } from '@nestjs/swagger'
 
-import { Sex } from '@prisma/client'
+import { Blood, Sex } from '@prisma/client'
 import { Type } from 'class-transformer'
 import { IsDateString, IsEnum, IsIn, IsNumber, Min } from 'class-validator'
 
 import { IsMinimumAge } from 'decorators'
 
 import { ACTIVITY_LEVEL, ActivityLevel } from 'constants/activityLevel'
-import { BLOOD, Blood } from 'constants/blood'
 
 export class UserCharacteristicsDto {
   @Min(150, { message: 'Height should be at least 150 cm' })
@@ -30,8 +29,9 @@ export class UserCharacteristicsDto {
   @ApiProperty({ example: '2008-10-21' })
   birthday: string
 
-  @IsIn(BLOOD)
-  @Type(() => Number)
+  // eslint-disable-next-line @darraghor/nestjs-typed/all-properties-have-explicit-defined
+  @IsEnum(Blood)
+  @Type(() => String)
   @ApiProperty({ example: 2 })
   blood: Blood
 

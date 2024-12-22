@@ -1,4 +1,5 @@
 export * from './auth.example'
+export * from './product.example'
 export * from './user.example'
 
 export const UserNotFoundResponseExample = {

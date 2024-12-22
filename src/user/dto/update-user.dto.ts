@@ -1,6 +1,6 @@
 import { ApiPropertyOptional } from '@nestjs/swagger'
 
-import { Sex } from '@prisma/client'
+import { Blood, Sex } from '@prisma/client'
 import { Type } from 'class-transformer'
 import {
   IsDateString,
@@ -16,7 +16,6 @@ import {
 import { IsMinimumAge } from 'decorators'
 
 import { ACTIVITY_LEVEL, ActivityLevel } from 'constants/activityLevel'
-import { BLOOD, Blood } from 'constants/blood'
 
 export class UpdateUserDto {
   @MinLength(2, { message: 'Name should be at least 2 characters long' })
@@ -57,8 +56,8 @@ export class UpdateUserDto {
   @IsOptional()
   birthday?: string
 
-  @IsIn(BLOOD)
-  @Type(() => Number)
+  @IsEnum(Blood)
+  @Type(() => String)
   @IsOptional()
   @ApiPropertyOptional({ example: 4 })
   blood?: Blood
