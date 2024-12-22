@@ -25,7 +25,10 @@ export class ExercisesController {
 
   @Get()
   @HttpCode(HttpStatus.OK)
-  @ApiOperation({ summary: 'Get all exercises' })
+  @ApiOperation({
+    summary:
+      'Get all exercises. Only one of the fields `bodyPart`, `equipment`, or `target` can be specified at a time.'
+  })
   @ApiOkResponse(Examples.ExercisesResponseExample)
   @ApiBadRequestResponse(Examples.ExercisesBadRequestResponseExample)
   async getAllExercises(@Query() query: SearchExerciseDto) {
