@@ -9,20 +9,21 @@ datasource db {
 }
 
 model User {
-  id                 String    @id @default(auto()) @map("_id") @db.ObjectId
-  name               String
-  email              String    @unique
-  password           String
-  height             Int?
-  currentWeight      Int?      @map("current_weight")
-  desiredWeight      Int?      @map("desired_weight")
-  birthday           DateTime?
-  sex                Sex?
-  blood              Blood?
-  activityLevel      Int?      @map("activity_level")
-  dailyCalorieIntake Int?      @map("daily_calorie_intake")
-  dailyExerciseTime  Int?      @default(110) @map("daily_exercise_time")
-  avatar             String?
+  id                         String    @id @default(auto()) @map("_id") @db.ObjectId
+  name                       String
+  email                      String    @unique
+  password                   String
+  height                     Int?
+  currentWeight              Int?      @map("current_weight")
+  desiredWeight              Int?      @map("desired_weight")
+  birthday                   DateTime?
+  sex                        Sex?
+  blood                      Blood?
+  isDailyIntakeFormCompleted Boolean   @default(false) @map("is_daily_intake_form_completed")
+  activityLevel              Int?      @map("activity_level")
+  dailyCalorieIntake         Int?      @map("daily_calorie_intake")
+  dailyExerciseTime          Int?      @default(110) @map("daily_exercise_time")
+  avatar                     String?
 
   @@map("users")
 }

@@ -38,6 +38,7 @@ export class UserService {
       data: {
         ...userCharacteristics,
         dailyCalorieIntake,
+        isDailyIntakeFormCompleted: true,
         birthday: new Date(userCharacteristics.birthday)
       }
     })

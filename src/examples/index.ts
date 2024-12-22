@@ -1,3 +1,5 @@
+import { HttpStatus } from '@nestjs/common'
+
 export * from './auth.example'
 export * from './product.example'
 export * from './user.example'
@@ -8,7 +10,7 @@ export const UserNotFoundResponseExample = {
       example: {
         message: 'User not found',
         error: 'Not Found',
-        statusCode: 404
+        statusCode: HttpStatus.NOT_FOUND
       }
     }
   }
@@ -20,7 +22,19 @@ export const UnauthorizedResponseExample = {
       example: {
         message: 'Unauthorized',
         error: 'Unauthorized',
-        statusCode: 401
+        statusCode: HttpStatus.UNAUTHORIZED
+      }
+    }
+  }
+}
+
+export const FormNotCompletedResponseExample = {
+  content: {
+    'application/json': {
+      example: {
+        message: 'Daily intake form is not completed',
+        error: 'Forbidden',
+        statusCode: HttpStatus.FORBIDDEN
       }
     }
   }

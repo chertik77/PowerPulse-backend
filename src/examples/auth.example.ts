@@ -1,3 +1,5 @@
+import { HttpStatus } from '@nestjs/common'
+
 export const AuthResponseExample = {
   headers: {
     'Set-Cookie': { description: 'Refresh token', schema: { type: 'string' } }
@@ -47,7 +49,7 @@ export const ConflictResponseExample = {
       example: {
         message: 'User with this email exists',
         error: 'Conflict',
-        statusCode: 409
+        statusCode: HttpStatus.CONFLICT
       }
     }
   }
@@ -62,7 +64,7 @@ export const SignupBadRequestResponseExample = {
           'Password should be at least 6 characters long'
         ],
         error: 'Bad Request',
-        statusCode: 400
+        statusCode: HttpStatus.BAD_REQUEST
       }
     }
   }

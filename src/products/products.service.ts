@@ -20,7 +20,7 @@ export class ProductsService {
         category: query.category,
         title: { contains: query.title, mode: 'insensitive' },
         groupBloodNotAllowed: this.determineBloodFilter(
-          query.recommendedByBlood!,
+          query.recommendedByBlood,
           userBlood
         )
       }
@@ -33,7 +33,7 @@ export class ProductsService {
     recommendedByBlood: RecommendedByBlood,
     userBLood: Blood
   ) {
-    if (recommendedByBlood === 'All' || !userBLood) return
+    if (recommendedByBlood === 'All') return
 
     if (recommendedByBlood === 'Recommended') {
       return { is: { [userBLood]: true } }

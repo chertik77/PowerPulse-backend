@@ -1,3 +1,5 @@
+import { HttpStatus } from '@nestjs/common'
+
 export const UserMeResponseExample = {
   content: {
     'application/json': {
@@ -53,7 +55,7 @@ export const UserBadRequestResponseExample = {
           'activityLevel must be one of the following values: 1, 2, 3, 4, 5'
         ],
         error: 'Bad Request',
-        statusCode: 400
+        statusCode: HttpStatus.BAD_REQUEST
       }
     }
   }
@@ -76,7 +78,7 @@ export const UserUnprocessableEntityResponseExample = {
       example: {
         message: 'Validation failed (expected type is /(jpeg|png)/)',
         error: 'Unprocessable Entity',
-        statusCode: 422
+        statusCode: HttpStatus.UNPROCESSABLE_ENTITY
       }
     }
   }

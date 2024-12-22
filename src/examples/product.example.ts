@@ -1,3 +1,5 @@
+import { HttpStatus } from '@nestjs/common'
+
 export const ProductBadRequestResponseExample = {
   content: {
     'application/json': {
@@ -7,7 +9,7 @@ export const ProductBadRequestResponseExample = {
           'page must be a number conforming to the specified constraints'
         ],
         error: 'Bad Request',
-        statusCode: 400
+        statusCode: HttpStatus.BAD_REQUEST
       }
     }
   }
