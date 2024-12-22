@@ -17,6 +17,7 @@ import {
   ApiBody,
   ApiConsumes,
   ApiCreatedResponse,
+  ApiForbiddenResponse,
   ApiNotFoundResponse,
   ApiOkResponse,
   ApiOperation,
@@ -28,9 +29,9 @@ import {
 import * as Examples from 'examples'
 
 import { CurrentUser } from 'decorators'
-import { Auth } from 'guards'
+import { Auth, DailyIntakeFormCompletion } from 'guards'
 
-import { UpdateUserDto, UserCharacteristicsDto } from './dto'
+import { CalculateDailyIntakeDto, UpdateUserDto } from './dto'
 import { UserService } from './user.service'
 
 @Controller('user')
@@ -41,28 +42,31 @@ import { UserService } from './user.service'
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
-  @Get('me')
-  @HttpCode(HttpStatus.OK)
-  @ApiOperation({ summary: 'Get a current user' })
-  @ApiOkResponse(Examples.UserMeResponseExample)
-  @ApiNotFoundResponse(Examples.UserNotFoundResponseExample)
-  async me(@CurrentUser('id') userId: string) {
-    return await this.userService.me(userId)
-  }
-
   @Post('daily-intake')
   @HttpCode(HttpStatus.CREATED)
   @ApiOperation({ summary: 'Calculate daily intake' })
   @ApiCreatedResponse(Examples.UserDailyIntakeResponseExample)
   @ApiBadRequestResponse(Examples.UserBadRequestResponseExample)
   calculateDailyIntake(
-    @Body() userCharacteristics: UserCharacteristicsDto,
+    @Body() userCharacteristics: CalculateDailyIntakeDto,
     @CurrentUser('id') userId: string
   ) {
     return this.userService.calculateDailyIntake(userCharacteristics, userId)
   }
 
+  @Get('me')
+  @DailyIntakeFormCompletion()
+  @HttpCode(HttpStatus.OK)
+  @ApiOperation({ summary: 'Get a current user' })
+  @ApiOkResponse(Examples.UserMeResponseExample)
+  @ApiNotFoundResponse(Examples.UserNotFoundResponseExample)
+  @ApiForbiddenResponse(Examples.FormNotCompletedResponseExample)
+  async me(@CurrentUser('id') userId: string) {
+    return await this.userService.me(userId)
+  }
+
   @Put()
+  @DailyIntakeFormCompletion()
   @HttpCode(HttpStatus.OK)
   @UseInterceptors(FileInterceptor('avatar'))
   @ApiOperation({ summary: 'Update a user' })
@@ -86,6 +90,7 @@ export class UserController {
     Examples.UserUnprocessableEntityResponseExample
   )
   @ApiBadRequestResponse(Examples.UserBadRequestResponseExample)
+  @ApiForbiddenResponse(Examples.FormNotCompletedResponseExample)
   async update(
     @CurrentUser('id') userId: string,
     @Body() dto: UpdateUserDto,

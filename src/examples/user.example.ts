@@ -4,17 +4,18 @@ export const UserMeResponseExample = {
   content: {
     'application/json': {
       example: {
-        id: '6765fd94762c5c11fd53999b',
-        name: 'Tom',
+        id: '67682dd4498bc0d0f81dba97',
+        name: 'Jake',
         email: 'test@gmail.com',
-        height: null,
-        currentWeight: null,
-        desiredWeight: null,
-        birthday: null,
-        sex: null,
-        blood: null,
-        activityLevel: null,
-        dailyCalorieIntake: null,
+        height: 170,
+        currentWeight: 83,
+        desiredWeight: 80,
+        birthday: '2008-10-21T00:00:00.000Z',
+        sex: 'male',
+        blood: 'B',
+        isDailyIntakeFormCompleted: true,
+        activityLevel: 3,
+        dailyCalorieIntake: 2817,
         dailyExerciseTime: 110,
         avatar: null
       }
@@ -26,17 +27,18 @@ export const UpdatedUserResponseExample = {
   content: {
     'application/json': {
       example: {
-        id: '6765fd94762c5c11fd53999b',
+        id: '67682dd4498bc0d0f81dba97',
         name: 'Jake',
         email: 'test@gmail.com',
         height: 180,
         currentWeight: 75,
         desiredWeight: 73,
-        birthday: null,
-        sex: null,
-        blood: null,
-        activityLevel: null,
-        dailyCalorieIntake: null,
+        birthday: '2008-10-21T00:00:00.000Z',
+        sex: 'male',
+        blood: 'B',
+        isDailyIntakeFormCompleted: true,
+        activityLevel: 3,
+        dailyCalorieIntake: 2817,
         dailyExerciseTime: 110,
         avatar: 'http://res.cloudinary.com/dtsgte7py/....u7.jpg'
       }

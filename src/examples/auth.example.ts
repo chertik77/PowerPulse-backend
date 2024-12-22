@@ -8,7 +8,7 @@ export const AuthResponseExample = {
     'application/json': {
       example: {
         user: {
-          id: '6765fd94762c5c11fd53999b',
+          id: '67682dd4498bc0d0f81dba97',
           name: 'Tom',
           email: 'test@gmail.com',
           height: null,
@@ -17,13 +17,14 @@ export const AuthResponseExample = {
           birthday: null,
           sex: null,
           blood: null,
+          isDailyIntakeFormCompleted: false,
           activityLevel: null,
           dailyCalorieIntake: null,
           dailyExerciseTime: 110,
           avatar: null
         },
         accessToken:
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NjVmZDk0NzYyYzVjMTFmZDUzOTk5YiIsImlhdCI6MTczNDczNzMwMCwiZXhwIjoxNzM0NzQwOTAwfQ.8yGePnlUNY6TxcBGL7VcIe5B1QvxNFoM2b63K8ZjrjA'
+          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NjgyZGQ0NDk4YmMwZDBmODFkYmE5NyIsImlhdCI6MTczNDg4MDcyNCwiZXhwIjoxNzM0ODg0MzI0fQ.6NJ6wvkHgm2KPUgbMOaSqCM4nDD1COfyxwtWdq9Smto'
       }
     }
   }

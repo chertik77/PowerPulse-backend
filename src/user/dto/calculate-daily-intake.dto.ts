@@ -8,7 +8,7 @@ import { IsMinimumAge } from 'decorators'
 
 import { ACTIVITY_LEVEL, ActivityLevel } from 'constants/activity-level'
 
-export class UserCharacteristicsDto {
+export class CalculateDailyIntakeDto {
   @Min(150, { message: 'Height should be at least 150 cm' })
   @IsNumber()
   @ApiProperty({ example: 170 })
@@ -32,7 +32,7 @@ export class UserCharacteristicsDto {
   // eslint-disable-next-line @darraghor/nestjs-typed/all-properties-have-explicit-defined
   @IsEnum(Blood)
   @Type(() => String)
-  @ApiProperty({ example: 2 })
+  @ApiProperty({ example: 'B' })
   blood: Blood
 
   @IsEnum(Sex)

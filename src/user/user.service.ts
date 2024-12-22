@@ -11,7 +11,7 @@ import { PrismaService } from 'prisma/prisma.service'
 
 import { getAgeFromBirthDate } from 'utils'
 
-import { UpdateUserDto, UserCharacteristicsDto } from './dto'
+import { CalculateDailyIntakeDto, UpdateUserDto } from './dto'
 
 @Injectable()
 export class UserService {
@@ -26,7 +26,7 @@ export class UserService {
   }
 
   async calculateDailyIntake(
-    userCharacteristics: UserCharacteristicsDto,
+    userCharacteristics: CalculateDailyIntakeDto,
     userId: string
   ) {
     const dailyCalorieIntake = Math.floor(
@@ -98,7 +98,7 @@ export class UserService {
     height,
     currentWeight,
     sex
-  }: UserCharacteristicsDto) {
+  }: CalculateDailyIntakeDto) {
     const lifeStyleCoefficient = { 1: 1.2, 2: 1.375, 3: 1.55, 4: 1.725, 5: 1.9 }
 
     const age = getAgeFromBirthDate(birthday)
