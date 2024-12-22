@@ -58,11 +58,24 @@ type GroupBloodNotAllowed {
   O  Boolean
 }
 
-model Filter {
+model ExerciseFilter {
   id     String @id @default(auto()) @map("_id") @db.ObjectId
-  filter String
+  type   String
   imgUrl String @map("img_url")
   name   String
 
-  @@map("filters")
+  @@map("exercises_filters")
+}
+
+model Exercise {
+  id              String @id @default(auto()) @map("_id") @db.ObjectId
+  bodyPart        String @map("body_part")
+  burned_calories Int    @map("burned_calories")
+  equipment       String
+  gifUrl          String @map("gif_url")
+  name            String
+  target          String
+  time            Int    @default(3)
+
+  @@map("exercises")
 }

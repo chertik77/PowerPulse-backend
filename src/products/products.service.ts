@@ -13,12 +13,12 @@ export class ProductsService {
   constructor(private prisma: PrismaService) {}
 
   async getAllProducts(
-    { page, limit, category, title, recommendedByBlood }: SearchProductDto,
+    { page, perPage, category, title, recommendedByBlood }: SearchProductDto,
     userBlood: Blood
   ) {
     const query: Prisma.ProductFindManyArgs = {
-      skip: (page - 1) * limit,
-      take: limit,
+      skip: (page - 1) * perPage,
+      take: perPage,
       where: {
         category,
         title: { contains: title, mode: 'insensitive' },
@@ -34,9 +34,9 @@ export class ProductsService {
       this.prisma.product.count({ where: query.where })
     ])
 
-    const totalPages = Math.ceil(totalProducts / limit)
+    const totalPages = Math.ceil(totalProducts / perPage)
 
-    return { page, perPage: limit, totalPages, products }
+    return { page, perPage, totalPages, products }
   }
 
   private determineBloodFilter(

@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
 
 import { AuthModule } from './auth/auth.module'
-import { FiltersModule } from './filters/filters.module'
+import { ExercisesModule } from './exercises/exercises.module'
 import { PrismaModule } from './prisma/prisma.module'
 import { ProductsModule } from './products/products.module'
 import { UserModule } from './user/user.module'
@@ -14,7 +14,7 @@ import { UserModule } from './user/user.module'
     AuthModule,
     UserModule,
     ProductsModule,
-    FiltersModule
+    ExercisesModule
   ]
 })
 export class AppModule {}

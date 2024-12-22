@@ -43,5 +43,5 @@ export class SearchProductDto {
   @IsOptional()
   @Type(() => Number)
   @ApiProperty({ type: 'number', default: 9, required: false })
-  limit = 9
+  perPage = 9
 }

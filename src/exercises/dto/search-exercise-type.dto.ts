@@ -5,12 +5,12 @@ import { IsIn, IsNumber, IsOptional } from 'class-validator'
 
 import { FILTER_TYPE, FilterType } from 'constants/filter-type'
 
-export class SearchFilterDto {
+export class SearchExerciseTypeDto {
   @IsIn(FILTER_TYPE)
   @IsOptional()
   @Type(() => String)
   @ApiPropertyOptional({ default: 'Body parts', enum: FILTER_TYPE })
-  filter?: FilterType = 'Body parts'
+  type?: FilterType = 'Body parts'
 
   @IsNumber()
   @IsOptional()
@@ -22,5 +22,5 @@ export class SearchFilterDto {
   @IsOptional()
   @Type(() => Number)
   @ApiProperty({ type: 'number', default: 10, required: false })
-  limit = 10
+  perPage = 10
 }

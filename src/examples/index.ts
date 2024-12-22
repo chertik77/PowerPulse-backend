@@ -37,6 +37,6 @@ export const FormNotCompletedResponseExample = {
 }
 
 export * from './auth.example'
-export * from './filter.example'
+export * from './exercise.example'
 export * from './product.example'
 export * from './user.example'
