@@ -2,7 +2,7 @@ import type { ExecutionContext } from '@nestjs/common'
 
 import { CanActivate, ForbiddenException, UseGuards } from '@nestjs/common'
 
-export class FormCompletionGuard implements CanActivate {
+export class DailyIntakeFormCompletionGuard implements CanActivate {
   async canActivate(context: ExecutionContext) {
     const request = context.switchToHttp().getRequest()
 
@@ -14,4 +14,5 @@ export class FormCompletionGuard implements CanActivate {
   }
 }
 
-export const FormCompletion = () => UseGuards(FormCompletionGuard)
+export const DailyIntakeFormCompletion = () =>
+  UseGuards(DailyIntakeFormCompletionGuard)

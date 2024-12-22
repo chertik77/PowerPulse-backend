@@ -14,13 +14,13 @@ import {
 import * as Examples from 'examples'
 
 import { CurrentUser } from 'decorators'
-import { Auth, FormCompletion } from 'guards'
+import { Auth, DailyIntakeFormCompletion } from 'guards'
 
 import { SearchProductDto } from './dto'
 import { ProductsService } from './products.service'
 
 @Controller('products')
-@FormCompletion()
+@DailyIntakeFormCompletion()
 @Auth()
 @ApiTags('Products')
 @ApiBearerAuth()
