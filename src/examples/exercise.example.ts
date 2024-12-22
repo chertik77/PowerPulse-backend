@@ -17,8 +17,7 @@ export const ExercisesBadRequestResponseExample = {
     'application/json': {
       example: {
         message: [
-          'bodyPart should not be empty',
-          'page must be a number conforming to the specified constraints'
+          'Only one of bodyPart, equipment, target can be defined at time.'
         ],
         error: 'Bad Request',
         statusCode: 400
