@@ -1,2 +1,2 @@
 export * from './auth.guard'
-export * from './form-completion.guard'
+export * from './daily-intake-form-completion.guard'

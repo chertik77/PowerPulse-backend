@@ -4,7 +4,7 @@ import { Injectable } from '@nestjs/common'
 
 import { PrismaService } from 'prisma/prisma.service'
 
-import { RecommendedByBlood } from 'constants/recommendedByBlood'
+import { RecommendedByBlood } from 'constants/recommended-by-blood'
 
 import { SearchProductDto } from './dto'
 

@@ -12,7 +12,7 @@ import {
 import {
   RECOMMENDED_BY_BLOOD,
   RecommendedByBlood
-} from 'constants/recommendedByBlood'
+} from 'constants/recommended-by-blood'
 
 export class SearchProductDto {
   @IsString()

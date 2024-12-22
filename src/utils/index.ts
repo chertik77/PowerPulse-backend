@@ -1,1 +1,1 @@
-export * from './getAgeFromBirthDate.js'
+export * from './get-age-from-birth-date'
