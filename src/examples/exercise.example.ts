@@ -121,7 +121,7 @@ export const ExercisesResponseExample = {
           {
             id: '64f2458d6f67bc34bae4f7f7',
             bodyPart: 'chest',
-            burned_calories: 329,
+            burnedCalories: 329,
             equipment: 'leverage machine',
             gifUrl: 'https://ftp.goit.study/img/power-pulse/gifs/0009.gif',
             name: 'assisted chest dip (kneeling)',
@@ -131,7 +131,7 @@ export const ExercisesResponseExample = {
           {
             id: '64f2458d6f67bc34bae4f806',
             bodyPart: 'chest',
-            burned_calories: 250,
+            burnedCalories: 250,
             equipment: 'barbell',
             gifUrl: 'https://ftp.goit.study/img/power-pulse/gifs/0025.gif',
             name: 'barbell bench press',
@@ -141,7 +141,7 @@ export const ExercisesResponseExample = {
           {
             id: '64f2458d6f67bc34bae4f80e',
             bodyPart: 'chest',
-            burned_calories: 129,
+            burnedCalories: 129,
             equipment: 'barbell',
             gifUrl: 'https://ftp.goit.study/img/power-pulse/gifs/0033.gif',
             name: 'barbell decline bench press',
@@ -151,7 +151,7 @@ export const ExercisesResponseExample = {
           {
             id: '64f2458d6f67bc34bae4f811',
             bodyPart: 'chest',
-            burned_calories: 209,
+            burnedCalories: 209,
             equipment: 'barbell',
             gifUrl: 'https://ftp.goit.study/img/power-pulse/gifs/0036.gif',
             name: 'barbell decline wide-grip press',
@@ -161,7 +161,7 @@ export const ExercisesResponseExample = {
           {
             id: '64f2458d6f67bc34bae4f815',
             bodyPart: 'chest',
-            burned_calories: 142,
+            burnedCalories: 142,
             equipment: 'barbell',
             gifUrl: 'https://ftp.goit.study/img/power-pulse/gifs/0040.gif',
             name: 'barbell front raise and pullover',
@@ -171,7 +171,7 @@ export const ExercisesResponseExample = {
           {
             id: '64f2458d6f67bc34bae4f81a',
             bodyPart: 'chest',
-            burned_calories: 183,
+            burnedCalories: 183,
             equipment: 'barbell',
             gifUrl: 'https://ftp.goit.study/img/power-pulse/gifs/0045.gif',
             name: 'barbell guillotine bench press',
@@ -181,7 +181,7 @@ export const ExercisesResponseExample = {
           {
             id: '64f2458d6f67bc34bae4f81c',
             bodyPart: 'chest',
-            burned_calories: 165,
+            burnedCalories: 165,
             equipment: 'barbell',
             gifUrl: 'https://ftp.goit.study/img/power-pulse/gifs/0047.gif',
             name: 'barbell incline bench press',
@@ -191,7 +191,7 @@ export const ExercisesResponseExample = {
           {
             id: '64f2458d6f67bc34bae4f81f',
             bodyPart: 'chest',
-            burned_calories: 244,
+            burnedCalories: 244,
             equipment: 'barbell',
             gifUrl: 'https://ftp.goit.study/img/power-pulse/gifs/0050.gif',
             name: 'barbell incline shoulder raise',
@@ -201,7 +201,7 @@ export const ExercisesResponseExample = {
           {
             id: '64f2458d6f67bc34bae4f865',
             bodyPart: 'chest',
-            burned_calories: 253,
+            burnedCalories: 253,
             equipment: 'barbell',
             gifUrl: 'https://ftp.goit.study/img/power-pulse/gifs/0122.gif',
             name: 'barbell wide bench press',
