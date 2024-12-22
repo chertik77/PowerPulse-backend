@@ -1,4 +1,4 @@
-import type { Blood } from '@prisma/client'
+import type { Blood, Prisma } from '@prisma/client'
 
 import { Injectable } from '@nestjs/common'
 
@@ -12,21 +12,31 @@ import { SearchProductDto } from './dto'
 export class ProductsService {
   constructor(private prisma: PrismaService) {}
 
-  async getAllProducts(query: SearchProductDto, userBlood: Blood) {
-    const products = await this.prisma.product.findMany({
-      skip: (query.page - 1) * query.limit,
-      take: query.limit,
+  async getAllProducts(
+    { page, limit, category, title, recommendedByBlood }: SearchProductDto,
+    userBlood: Blood
+  ) {
+    const query: Prisma.ProductFindManyArgs = {
+      skip: (page - 1) * limit,
+      take: limit,
       where: {
-        category: query.category,
-        title: { contains: query.title, mode: 'insensitive' },
+        category,
+        title: { contains: title, mode: 'insensitive' },
         groupBloodNotAllowed: this.determineBloodFilter(
-          query.recommendedByBlood,
+          recommendedByBlood,
           userBlood
         )
       }
-    })
+    }
 
-    return products
+    const [products, totalProducts] = await this.prisma.$transaction([
+      this.prisma.product.findMany(query),
+      this.prisma.product.count({ where: query.where })
+    ])
+
+    const totalPages = Math.ceil(totalProducts / limit)
+
+    return { page, perPage: limit, totalPages, products }
   }
 
   private determineBloodFilter(

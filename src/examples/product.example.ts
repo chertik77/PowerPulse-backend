@@ -18,125 +18,130 @@ export const ProductBadRequestResponseExample = {
 export const ProductResponseExample = {
   content: {
     'application/json': {
-      example: [
-        {
-          groupBloodNotAllowed: {
-            A: true,
-            B: false,
-            AB: false,
-            O: false
+      example: {
+        page: 1,
+        perPage: 9,
+        totalPages: 292,
+        products: [
+          {
+            groupBloodNotAllowed: {
+              A: true,
+              B: false,
+              AB: false,
+              O: false
+            },
+            id: '5d51694802b2373622ff552c',
+            weight: 100,
+            calories: 157,
+            category: 'eggs',
+            title: 'Melange egg'
           },
-          id: '5d51694802b2373622ff552c',
-          weight: 100,
-          calories: 157,
-          category: 'eggs',
-          title: 'Melange egg'
-        },
-        {
-          groupBloodNotAllowed: {
-            A: true,
-            B: false,
-            AB: false,
-            O: false
+          {
+            groupBloodNotAllowed: {
+              A: true,
+              B: false,
+              AB: false,
+              O: false
+            },
+            id: '5d51694802b2373622ff552d',
+            weight: 100,
+            calories: 184,
+            category: 'eggs',
+            title: 'Omelette'
           },
-          id: '5d51694802b2373622ff552d',
-          weight: 100,
-          calories: 184,
-          category: 'eggs',
-          title: 'Omelette'
-        },
-        {
-          groupBloodNotAllowed: {
-            A: true,
-            B: false,
-            AB: false,
-            O: false
+          {
+            groupBloodNotAllowed: {
+              A: true,
+              B: false,
+              AB: false,
+              O: false
+            },
+            id: '5d51694802b2373622ff552e',
+            weight: 100,
+            calories: 257,
+            category: 'eggs',
+            title: 'Whipped cream omelette'
           },
-          id: '5d51694802b2373622ff552e',
-          weight: 100,
-          calories: 257,
-          category: 'eggs',
-          title: 'Whipped cream omelette'
-        },
-        {
-          groupBloodNotAllowed: {
-            A: true,
-            B: false,
-            AB: false,
-            O: false
+          {
+            groupBloodNotAllowed: {
+              A: true,
+              B: false,
+              AB: false,
+              O: false
+            },
+            id: '5d51694802b2373622ff552f',
+            weight: 100,
+            calories: 200,
+            category: 'eggs',
+            title: 'Egg powder omelette'
           },
-          id: '5d51694802b2373622ff552f',
-          weight: 100,
-          calories: 200,
-          category: 'eggs',
-          title: 'Egg powder omelette'
-        },
-        {
-          groupBloodNotAllowed: {
-            A: true,
-            B: false,
-            AB: false,
-            O: false
+          {
+            groupBloodNotAllowed: {
+              A: true,
+              B: false,
+              AB: false,
+              O: false
+            },
+            id: '5d51694802b2373622ff5530',
+            weight: 100,
+            calories: 342,
+            category: 'eggs',
+            title: 'Omelet with cheese'
           },
-          id: '5d51694802b2373622ff5530',
-          weight: 100,
-          calories: 342,
-          category: 'eggs',
-          title: 'Omelet with cheese'
-        },
-        {
-          groupBloodNotAllowed: {
-            A: true,
-            B: false,
-            AB: false,
-            O: false
+          {
+            groupBloodNotAllowed: {
+              A: true,
+              B: false,
+              AB: false,
+              O: false
+            },
+            id: '5d51694802b2373622ff5531',
+            weight: 100,
+            calories: 215,
+            category: 'eggs',
+            title: 'Fried egg'
           },
-          id: '5d51694802b2373622ff5531',
-          weight: 100,
-          calories: 215,
-          category: 'eggs',
-          title: 'Fried egg'
-        },
-        {
-          groupBloodNotAllowed: {
-            A: true,
-            B: false,
-            AB: false,
-            O: false
+          {
+            groupBloodNotAllowed: {
+              A: true,
+              B: false,
+              AB: false,
+              O: false
+            },
+            id: '5d51694802b2373622ff5532',
+            weight: 100,
+            calories: 542,
+            category: 'eggs',
+            title: 'Egg powder'
           },
-          id: '5d51694802b2373622ff5532',
-          weight: 100,
-          calories: 542,
-          category: 'eggs',
-          title: 'Egg powder'
-        },
-        {
-          groupBloodNotAllowed: {
-            A: true,
-            B: false,
-            AB: false,
-            O: false
+          {
+            groupBloodNotAllowed: {
+              A: true,
+              B: false,
+              AB: false,
+              O: false
+            },
+            id: '5d51694802b2373622ff5533',
+            weight: 100,
+            calories: 185,
+            category: 'eggs',
+            title: 'goose egg'
           },
-          id: '5d51694802b2373622ff5533',
-          weight: 100,
-          calories: 185,
-          category: 'eggs',
-          title: 'goose egg'
-        },
-        {
-          groupBloodNotAllowed: {
-            A: true,
-            B: false,
-            AB: false,
-            O: false
-          },
-          id: '5d51694802b2373622ff5534',
-          weight: 100,
-          calories: 165,
-          category: 'eggs',
-          title: 'turkey egg'
-        }
-      ]
+          {
+            groupBloodNotAllowed: {
+              A: true,
+              B: false,
+              AB: false,
+              O: false
+            },
+            id: '5d51694802b2373622ff5534',
+            weight: 100,
+            calories: 165,
+            category: 'eggs',
+            title: 'turkey egg'
+          }
+        ]
+      }
     }
   }
 }
