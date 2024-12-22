@@ -1,9 +1,5 @@
 import { HttpStatus } from '@nestjs/common'
 
-export * from './auth.example'
-export * from './product.example'
-export * from './user.example'
-
 export const UserNotFoundResponseExample = {
   content: {
     'application/json': {
@@ -39,3 +35,8 @@ export const FormNotCompletedResponseExample = {
     }
   }
 }
+
+export * from './auth.example'
+export * from './filter.example'
+export * from './product.example'
+export * from './user.example'

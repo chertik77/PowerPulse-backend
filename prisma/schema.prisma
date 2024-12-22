@@ -57,3 +57,12 @@ type GroupBloodNotAllowed {
   AB Boolean
   O  Boolean
 }
+
+model Filter {
+  id     String @id @default(auto()) @map("_id") @db.ObjectId
+  filter String
+  imgUrl String @map("img_url")
+  name   String
+
+  @@map("filters")
+}
