@@ -6,12 +6,11 @@ import {
   updateIgnoreNotFoundExtension
 } from './extensions'
 
-function extendClient(base: PrismaClient) {
-  return base
+const extendClient = (base: PrismaClient) =>
+  base
     .$extends(findManyAndCountExtension)
     .$extends(updateIgnoreNotFoundExtension)
     .$extends(deleteIgnoreNotFoundExtension)
-}
 
 class UntypedExtendedClient extends PrismaClient {
   constructor(options?: ConstructorParameters<typeof PrismaClient>[0]) {
