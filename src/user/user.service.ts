@@ -60,7 +60,7 @@ export class UserService {
       })
     }
 
-    const user = await this.prisma.user.update({
+    const user = await this.prisma.user.updateIgnoreNotFound({
       where: { id: userId },
       data: { ...dto, avatar },
       omit: { password: true }

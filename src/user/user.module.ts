@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 
 import { getCloudinaryConfig } from 'config'
+import { CLOUDINARY_INJECTION_TOKEN } from 'constants/tokens'
 
 import { UserController } from './user.controller'
 import { UserService } from './user.service'
@@ -11,7 +12,7 @@ import { UserService } from './user.service'
   providers: [
     UserService,
     {
-      provide: 'Cloudinary',
+      provide: CLOUDINARY_INJECTION_TOKEN,
       inject: [ConfigService],
       useFactory: getCloudinaryConfig
     }
