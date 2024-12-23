@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common'
 
-import { Prisma } from '@prisma/client'
 import { PrismaService } from 'prisma/prisma.service'
 
 import { SearchExerciseDto, SearchExerciseTypeDto } from './dto'
@@ -16,37 +15,30 @@ export class ExercisesService {
     page,
     perPage
   }: SearchExerciseDto) {
-    const query: Prisma.ExerciseFindManyArgs = {
+    const {
+      records: exercises,
+      totalRecords: totalExercises,
+      totalPages
+    } = await this.prisma.exercise.findManyAndCount({
       skip: (page - 1) * perPage,
       take: perPage,
       where: { OR: [{ bodyPart }, { equipment }, { target }] }
-    }
+    })
 
-    const [exercises, totalExercises] = await this.prisma.$transaction([
-      this.prisma.exercise.findMany(query),
-      this.prisma.exercise.count({ where: query.where })
-    ])
-
-    const totalPages = Math.ceil(totalExercises / perPage)
-
-    return { page, perPage, totalPages, exercises }
+    return { page, perPage, totalExercises, totalPages, exercises }
   }
 
   async getAllExercisesFilters({ type, page, perPage }: SearchExerciseTypeDto) {
-    const query: Prisma.ExerciseFilterFindManyArgs = {
+    const {
+      records: exerciseFilters,
+      totalRecords: totalExerciseFilters,
+      totalPages
+    } = await this.prisma.exerciseFilter.findManyAndCount({
       skip: (page - 1) * perPage,
       take: perPage,
       where: { type }
-    }
+    })
 
-    const [exerciseFilters, totalExerciseFilters] =
-      await this.prisma.$transaction([
-        this.prisma.exerciseFilter.findMany(query),
-        this.prisma.exerciseFilter.count({ where: query.where })
-      ])
-
-    const totalPages = Math.ceil(totalExerciseFilters / perPage)
-
-    return { page, perPage, totalPages, exerciseFilters }
+    return { page, perPage, totalExerciseFilters, totalPages, exerciseFilters }
   }
 }

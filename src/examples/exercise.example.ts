@@ -32,6 +32,7 @@ export const ExercisesFiltersResponseExample = {
       example: {
         page: 1,
         perPage: 10,
+        totalExerciseFilters: 19,
         totalPages: 2,
         filters: [
           {
@@ -116,6 +117,7 @@ export const ExercisesResponseExample = {
       example: {
         page: 1,
         perPage: 9,
+        totalExercises: 163,
         totalPages: 19,
         exercises: [
           {

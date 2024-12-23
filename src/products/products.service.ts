@@ -1,4 +1,4 @@
-import type { Blood, Prisma } from '@prisma/client'
+import type { Blood } from '@prisma/client'
 
 import { Injectable } from '@nestjs/common'
 
@@ -16,7 +16,11 @@ export class ProductsService {
     { page, perPage, category, title, recommendedByBlood }: SearchProductDto,
     userBlood: Blood
   ) {
-    const query: Prisma.ProductFindManyArgs = {
+    const {
+      records: products,
+      totalRecords: totalProducts,
+      totalPages
+    } = await this.prisma.product.findManyAndCount({
       skip: (page - 1) * perPage,
       take: perPage,
       where: {
@@ -27,16 +31,9 @@ export class ProductsService {
           userBlood
         )
       }
-    }
+    })
 
-    const [products, totalProducts] = await this.prisma.$transaction([
-      this.prisma.product.findMany(query),
-      this.prisma.product.count({ where: query.where })
-    ])
-
-    const totalPages = Math.ceil(totalProducts / perPage)
-
-    return { page, perPage, totalPages, products }
+    return { page, perPage, totalProducts, totalPages, products }
   }
 
   private determineBloodFilter(

@@ -21,6 +21,7 @@ export const ProductResponseExample = {
       example: {
         page: 1,
         perPage: 9,
+        totalProducts: 2621,
         totalPages: 292,
         products: [
           {
