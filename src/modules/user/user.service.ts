@@ -6,11 +6,12 @@ import {
 
 import { Prisma } from '@prisma/client'
 import { hash } from 'argon2'
-import { SignupDto } from 'auth/dto'
 import { v2 } from 'cloudinary'
-import { PrismaService } from 'prisma/prisma.service'
 
-import { getAgeFromBirthDate } from 'utils'
+import { SignupDto } from 'modules/auth/dto'
+import { PrismaService } from 'modules/prisma/prisma.service'
+
+import { getAgeFromBirthDate } from 'common/utils'
 
 import { CalculateDailyIntakeDto, UpdateUserDto } from './dto'
 

@@ -3,7 +3,7 @@ import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger'
 import { Type } from 'class-transformer'
 import { IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator'
 
-import { OneOf } from 'decorators'
+import { OneOf } from 'common/decorators'
 
 @OneOf(['bodyPart', 'equipment', 'target'])
 export class SearchExerciseDto {

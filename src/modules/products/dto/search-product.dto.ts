@@ -9,10 +9,7 @@ import {
   IsString
 } from 'class-validator'
 
-import {
-  RECOMMENDED_BY_BLOOD,
-  RecommendedByBlood
-} from 'constants/recommended-by-blood'
+import { RECOMMENDED_BY_BLOOD, RecommendedByBlood } from 'common/constants'
 
 export class SearchProductDto {
   @IsString()

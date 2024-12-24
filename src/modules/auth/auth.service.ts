@@ -11,7 +11,8 @@ import { ConfigService } from '@nestjs/config'
 import { JwtService } from '@nestjs/jwt'
 
 import { verify } from 'argon2'
-import { UserService } from 'user/user.service'
+
+import { UserService } from 'modules/user/user.service'
 
 import { SigninDto, SignupDto } from './dto'
 

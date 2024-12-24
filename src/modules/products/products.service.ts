@@ -2,9 +2,9 @@ import type { Blood } from '@prisma/client'
 
 import { Injectable } from '@nestjs/common'
 
-import { PrismaService } from 'prisma/prisma.service'
+import { PrismaService } from 'modules/prisma/prisma.service'
 
-import { RecommendedByBlood } from 'constants/recommended-by-blood'
+import { RecommendedByBlood } from 'common/constants'
 
 import { SearchProductDto } from './dto'
 

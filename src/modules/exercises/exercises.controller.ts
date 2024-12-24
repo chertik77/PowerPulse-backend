@@ -8,9 +8,8 @@ import {
   ApiUnauthorizedResponse
 } from '@nestjs/swagger'
 
-import * as Examples from 'examples'
-
-import { Auth } from 'guards'
+import * as Examples from 'common/examples'
+import { Auth } from 'common/guards'
 
 import { SearchExerciseDto, SearchExerciseTypeDto } from './dto'
 import { ExercisesService } from './exercises.service'

@@ -3,7 +3,7 @@ import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger'
 import { Type } from 'class-transformer'
 import { IsIn, IsNumber, IsOptional } from 'class-validator'
 
-import { FILTER_TYPE, FilterType } from 'constants/filter-type'
+import { FILTER_TYPE, FilterType } from 'common/constants'
 
 export class SearchExerciseTypeDto {
   @IsIn(FILTER_TYPE)

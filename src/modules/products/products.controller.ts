@@ -11,10 +11,9 @@ import {
   ApiUnauthorizedResponse
 } from '@nestjs/swagger'
 
-import * as Examples from 'examples'
-
-import { CurrentUser } from 'decorators'
-import { Auth, DailyIntakeFormCompletion } from 'guards'
+import { CurrentUser } from 'common/decorators'
+import * as Examples from 'common/examples'
+import { Auth, DailyIntakeFormCompletion } from 'common/guards'
 
 import { SearchProductDto } from './dto'
 import { ProductsService } from './products.service'

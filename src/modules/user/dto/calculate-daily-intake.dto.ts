@@ -4,9 +4,8 @@ import { Blood, Sex } from '@prisma/client'
 import { Type } from 'class-transformer'
 import { IsDateString, IsEnum, IsIn, IsNumber, Min } from 'class-validator'
 
-import { IsMinimumAge } from 'decorators'
-
-import { ACTIVITY_LEVEL, ActivityLevel } from 'constants/activity-level'
+import { ACTIVITY_LEVEL, ActivityLevel } from 'common/constants'
+import { IsMinimumAge } from 'common/decorators'
 
 export class CalculateDailyIntakeDto {
   @Min(150, { message: 'Height should be at least 150 cm' })
