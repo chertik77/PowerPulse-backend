@@ -11,17 +11,7 @@ export const AuthResponseExample = {
           id: '67682dd4498bc0d0f81dba97',
           name: 'Tom',
           email: 'test@gmail.com',
-          height: null,
-          currentWeight: null,
-          desiredWeight: null,
-          birthday: null,
-          sex: null,
-          blood: null,
-          isDailyIntakeFormCompleted: false,
-          activityLevel: null,
-          dailyCalorieIntake: null,
-          dailyExerciseTime: 110,
-          avatar: null
+          isDailyIntakeFormCompleted: false
         },
         accessToken:
           'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NjgyZGQ0NDk4YmMwZDBmODFkYmE5NyIsImlhdCI6MTczNDg4MDcyNCwiZXhwIjoxNzM0ODg0MzI0fQ.6NJ6wvkHgm2KPUgbMOaSqCM4nDD1COfyxwtWdq9Smto'

@@ -4,6 +4,7 @@ import {
   UnprocessableEntityException
 } from '@nestjs/common'
 
+import { Prisma } from '@prisma/client'
 import { hash } from 'argon2'
 import { SignupDto } from 'auth/dto'
 import { v2 } from 'cloudinary'
@@ -71,24 +72,21 @@ export class UserService {
     return user
   }
 
-  async findById(id: string) {
+  async findById(id: string, select?: Prisma.UserSelect) {
     return await this.prisma.user.findFirst({
       where: { id },
-      omit: { password: true }
+      select
     })
   }
 
-  async findOneByEmail(email: string) {
-    return await this.prisma.user.findUnique({ where: { email } })
+  async findOneByEmail(email: string, select?: Prisma.UserSelect) {
+    return await this.prisma.user.findUnique({ where: { email }, select })
   }
 
-  async createNewUser(dto: SignupDto) {
+  async createNewUser(dto: SignupDto, select?: Prisma.UserSelect) {
     return await this.prisma.user.create({
-      data: {
-        ...dto,
-        password: await hash(dto.password)
-      },
-      omit: { password: true }
+      data: { ...dto, password: await hash(dto.password) },
+      select
     })
   }
 

@@ -31,7 +31,12 @@ export class AuthService {
 
     if (isUserExists) throw new ConflictException('User with this email exists')
 
-    const user = await this.userService.createNewUser(dto)
+    const user = await this.userService.createNewUser(dto, {
+      id: true,
+      name: true,
+      email: true,
+      isDailyIntakeFormCompleted: true
+    })
 
     const tokens = this.issueTokens(user.id)
 
@@ -73,7 +78,13 @@ export class AuthService {
   }
 
   private async validateUser({ email, password }: SigninDto) {
-    const user = await this.userService.findOneByEmail(email)
+    const user = await this.userService.findOneByEmail(email, {
+      id: true,
+      name: true,
+      email: true,
+      password: true,
+      isDailyIntakeFormCompleted: true
+    })
 
     if (!user) throw new NotFoundException('User not found')
 
