@@ -8,7 +8,7 @@ model User {
     desiredWeight              Int?      @map("desired_weight")
     birthday                   DateTime?
     sex                        Sex?
-    blood                      Blood?
+    blood                      Int?
     isDailyIntakeFormCompleted Boolean   @default(false) @map("is_daily_intake_form_completed")
     activityLevel              Int?      @map("activity_level")
     dailyCalorieIntake         Int?      @map("daily_calorie_intake")
@@ -16,13 +16,6 @@ model User {
     avatar                     String?
 
     @@map("users")
-}
-
-enum Blood {
-    A
-    B
-    AB
-    O
 }
 
 enum Sex {

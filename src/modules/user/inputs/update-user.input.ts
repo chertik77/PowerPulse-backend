@@ -1,4 +1,4 @@
-import type { ActivityLevel } from 'common/constants'
+import type { ActivityLevel, Blood } from 'common/constants'
 
 import { Field, InputType, Int, registerEnumType } from '@nestjs/graphql'
 
@@ -13,12 +13,11 @@ import {
   Min,
   MinLength
 } from 'class-validator'
-import { Blood, Sex } from 'generated/prisma/enums'
+import { Sex } from 'generated/prisma/enums'
 import GraphQLUpload, { FileUpload } from 'graphql-upload/GraphQLUpload.mjs'
 
-import { ACTIVITY_LEVEL } from 'common/constants'
+import { ACTIVITY_LEVEL, BLOOD } from 'common/constants'
 
-registerEnumType(Blood, { name: 'Blood' })
 registerEnumType(Sex, { name: 'Sex' })
 
 @InputType()
@@ -65,9 +64,9 @@ export class UpdateUserInput {
   @Field(() => Sex, { nullable: true })
   sex?: Sex
 
-  @IsEnum(Blood)
+  @IsIn(BLOOD)
   @IsOptional()
-  @Field(() => Blood, { nullable: true })
+  @Field(() => Int, { nullable: true })
   blood?: Blood
 
   @IsIn(ACTIVITY_LEVEL)
