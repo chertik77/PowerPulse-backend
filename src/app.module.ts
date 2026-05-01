@@ -1,20 +1,12 @@
 import { Module } from '@nestjs/common'
-import { ConfigModule } from '@nestjs/config'
 
-import { AuthModule } from 'modules/auth/auth.module'
-import { ExercisesModule } from 'modules/exercises/exercises.module'
-import { PrismaModule } from 'modules/prisma/prisma.module'
-import { ProductsModule } from 'modules/products/products.module'
-import { UserModule } from 'modules/user/user.module'
+import { dotenvLoader, TypedConfigModule } from 'nest-typed-config'
+
+import { RootConfig } from 'config/env.config'
 
 @Module({
   imports: [
-    ConfigModule.forRoot({ isGlobal: true }),
-    PrismaModule,
-    AuthModule,
-    UserModule,
-    ProductsModule,
-    ExercisesModule
+    TypedConfigModule.forRoot({ schema: RootConfig, load: dotenvLoader() })
   ]
 })
 export class AppModule {}

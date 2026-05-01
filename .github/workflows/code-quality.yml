@@ -1,23 +1,23 @@
-name: Checking code quality
+name: Code Quality & Standards Check
 
 on:
   push:
-    branches: ["main"]
+    branches: [ "main" ]
   pull_request:
-    branches: ["main"]
+    branches: [ "main" ]
 
 jobs:
   checking:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout 🛎️
+      - name: Checkout Repository 🛎️
         uses: actions/checkout@v4
 
-      - name: Use Node.js 18 🚀
+      - name: Use Node.js 22 🚀
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 22
 
       - name: Setup bun
         uses: oven-sh/setup-bun@v2
@@ -25,11 +25,11 @@ jobs:
       - name: Installing dependencies 📦
         run: bun i
 
-      - name: Linting code 🔧
+      - name: Run Linter 🔧
         run: bun lint
 
-      - name: Checking code formatting 📝
+      - name: Verify Code Formatting 📝
         run: bun format:check
 
-      - name: Conventional Commits 🔒
+      - name: Enforce Conventional Commits 🔒
         uses: webiny/action-conventional-commits@v1.1.0

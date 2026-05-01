@@ -1,34 +1,31 @@
 import type { NestExpressApplication } from '@nestjs/platform-express'
-import type { EnvVariables } from 'types'
 
 import { ValidationPipe } from '@nestjs/common'
-import { ConfigService } from '@nestjs/config'
 import { NestFactory } from '@nestjs/core'
-import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
 
-import * as cookieParser from 'cookie-parser'
-import * as logger from 'morgan'
+import cookieParser from 'cookie-parser'
+import helmet from 'helmet'
+import logger from 'morgan'
+
+import { RootConfig } from 'config'
 
 import { AppModule } from './app.module'
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule)
 
-  const configService = app.get(ConfigService<EnvVariables>)
+  const config = app.get(RootConfig)
 
   app.setGlobalPrefix('api')
 
   app.use(cookieParser())
 
-  app.use(logger('dev'))
+  app.use(logger(app.get('env') === 'development' ? 'dev' : 'combined'))
 
+  app.use(helmet())
   app.disable('x-powered-by')
 
-  app.enableCors({
-    origin: configService.get('ALLOWED_ORIGIN'),
-    credentials: true,
-    exposedHeaders: 'Set-Cookie'
-  })
+  app.enableCors({ origin: config.ALLOWED_ORIGINS, credentials: true })
 
   app.useGlobalPipes(
     new ValidationPipe({
@@ -38,22 +35,7 @@ async function bootstrap() {
     })
   )
 
-  const config = new DocumentBuilder()
-    .setTitle('Power Pulse API')
-    .setDescription(
-      'Power Pulse API documentation. This is a REST API for a fitness app.'
-    )
-    .addBearerAuth()
-    .addServer('http://localhost:5432/api', 'Development')
-    .build()
-
-  const document = SwaggerModule.createDocument(app, config, {
-    ignoreGlobalPrefix: true
-  })
-
-  SwaggerModule.setup('api/docs', app, document)
-
-  await app.listen(configService.getOrThrow('PORT'))
+  await app.listen(config.PORT)
 }
 
 bootstrap()

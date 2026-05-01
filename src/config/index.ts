@@ -1,2 +1,1 @@
-export * from './cloudinary.config'
-export * from './jwt.config'
+export { RootConfig } from './env.config'
