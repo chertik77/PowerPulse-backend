@@ -1,16 +1,65 @@
-import { Transform } from 'class-transformer'
-import { IsArray, IsNumber, IsPositive, IsUrl, Max, Min } from 'class-validator'
+import type { StringValue } from 'ms'
 
-export class RootConfig {
+import { plainToInstance, Transform } from 'class-transformer'
+import {
+  IsArray,
+  IsIn,
+  IsNumber,
+  IsPositive,
+  IsString,
+  IsUrl,
+  Max,
+  Min,
+  validateSync
+} from 'class-validator'
+
+export class EnvironmentVariables {
   @Transform(({ value }) => Number(value))
   @IsNumber()
   @IsPositive()
   @Min(1000)
   @Max(65535)
-  public readonly PORT!: number
+  public readonly PORT: number
+
+  @IsString()
+  public readonly DATABASE_URL: string
+
+  @IsString()
+  public readonly JWT_SECRET: string
+
+  @IsString()
+  public readonly ACCESS_TOKEN_EXPIRES_IN: StringValue
+
+  @IsString()
+  public readonly REFRESH_TOKEN_EXPIRES_IN: StringValue
+
+  @IsIn(['development', 'production'])
+  @IsString()
+  public readonly NODE_ENV: string = 'development'
 
   @Transform(({ value }) => value.split(','))
   @IsArray()
   @IsUrl({ host_whitelist: ['localhost'] }, { each: true })
-  public readonly ALLOWED_ORIGINS!: string[]
+  public readonly ALLOWED_ORIGINS: string[]
+
+  @IsString()
+  public readonly CLOUDINARY_CLOUD_NAME: string
+
+  @IsString()
+  public readonly CLOUDINARY_API_KEY: string
+
+  @IsString()
+  public readonly CLOUDINARY_API_SECRET: string
+}
+
+export function validate(config: Record<string, unknown>) {
+  const validatedConfig = plainToInstance(EnvironmentVariables, config, {
+    enableImplicitConversion: true
+  })
+
+  const errors = validateSync(validatedConfig, { skipMissingProperties: false })
+
+  if (errors.length > 0) throw new Error(errors.toString())
+
+  return validatedConfig
 }

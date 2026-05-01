@@ -1,12 +1,20 @@
 import { Module } from '@nestjs/common'
+import { ConfigModule } from '@nestjs/config'
+import { GraphQLModule } from '@nestjs/graphql'
 
-import { dotenvLoader, TypedConfigModule } from 'nest-typed-config'
+import { AuthModule } from 'modules/auth/auth.module'
+import { PrismaModule } from 'modules/prisma/prisma.module'
+import { UserModule } from 'modules/user/user.module'
 
-import { RootConfig } from 'config/env.config'
+import { getGraphQLConfig, validate } from 'config'
 
 @Module({
   imports: [
-    TypedConfigModule.forRoot({ schema: RootConfig, load: dotenvLoader() })
+    ConfigModule.forRoot({ validate, isGlobal: true }),
+    GraphQLModule.forRoot(getGraphQLConfig()),
+    PrismaModule,
+    AuthModule,
+    UserModule
   ]
 })
 export class AppModule {}
