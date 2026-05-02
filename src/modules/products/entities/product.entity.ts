@@ -29,11 +29,11 @@ export class ProductsResponse {
   totalPages: number
 
   @Field(() => Int)
-  total: number
+  totalRecords: number
 
   @Field(() => Int)
   page: number
 
   @Field(() => [Product])
-  items: Product[]
+  records: Product[]
 }

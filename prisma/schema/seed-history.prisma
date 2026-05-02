@@ -1,0 +1,6 @@
+model SeedHistory {
+    id         String   @id
+    executedAt DateTime @default(now()) @map("executed_at")
+
+    @@map("seed_history")
+}

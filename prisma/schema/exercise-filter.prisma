@@ -1,0 +1,8 @@
+model ExerciseFilter {
+    id     String @id @default(cuid())
+    type   String
+    imgUrl String @map("img_url")
+    name   String
+
+    @@map("exercises_filters")
+}

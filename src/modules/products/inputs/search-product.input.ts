@@ -27,18 +27,18 @@ export class SearchProductInput {
 
   @IsIn(RECOMMENDED_BY_BLOOD)
   @IsOptional()
-  @Field({ nullable: true })
+  @Field({ nullable: true, defaultValue: 'All' })
   recommendedByBlood?: RecommendedByBlood = 'All'
 
   @IsNumber()
   @IsOptional()
   @Type(() => Number)
-  @Field(() => Int, { nullable: true })
-  page? = 1
+  @Field(() => Int, { nullable: true, defaultValue: 1 })
+  page = 1
 
   @IsNumber()
   @IsOptional()
   @Type(() => Number)
-  @Field(() => Int, { nullable: true })
-  perPage? = 9
+  @Field(() => Int, { nullable: true, defaultValue: 9 })
+  perPage = 9
 }

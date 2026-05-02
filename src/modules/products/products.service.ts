@@ -20,24 +20,21 @@ export class ProductsService {
     const category = input?.category
     const title = input?.title
 
-    const {
-      records: products,
-      totalRecords: total,
-      totalPages
-    } = await this.prisma.product.findManyAndCount({
-      skip: (page - 1) * perPage,
-      take: perPage,
-      where: {
-        category,
-        title: { contains: title, mode: 'insensitive' },
-        groupBloodNotAllowed: this.determineBloodFilter(
-          input?.recommendedByBlood ?? 'All',
-          userBlood
-        )
-      }
-    })
+    const { records, totalRecords, totalPages } =
+      await this.prisma.product.findManyAndCount({
+        skip: (page - 1) * perPage,
+        take: perPage,
+        where: {
+          category,
+          title: { contains: title, mode: 'insensitive' },
+          groupBloodNotAllowed: this.determineBloodFilter(
+            input?.recommendedByBlood ?? 'All',
+            userBlood
+          )
+        }
+      })
 
-    return { page, perPage, total, totalPages, items: products }
+    return { page, perPage, totalRecords, totalPages, records }
   }
 
   private determineBloodFilter(

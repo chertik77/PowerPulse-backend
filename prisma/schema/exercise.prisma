@@ -1,0 +1,12 @@
+model Exercise {
+    id             String @id @default(cuid())
+    bodyPart       String @map("body_part")
+    burnedCalories Int    @map("burned_calories")
+    equipment      String
+    gifUrl         String @map("gif_url")
+    name           String
+    target         String
+    time           Int    @default(3)
+
+    @@map("exercises")
+}

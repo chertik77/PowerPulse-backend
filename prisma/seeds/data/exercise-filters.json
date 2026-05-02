@@ -1,0 +1,287 @@
+[
+  {
+    "imgUrl": "https://ftp.goit.study/img/power-pulse/filters/back_wzzphw.jpg",
+    "name": "back",
+    "type": "Body parts"
+  },
+  {
+    "name": "cardio",
+    "type": "Body parts",
+    "imgUrl": "https://ftp.goit.study/img/power-pulse/filters/cardio_pkkceg.jpg"
+  },
+  {
+    "name": "chest",
+    "imgUrl": "https://ftp.goit.study/img/power-pulse/filters/chest_rqs6fw.jpg",
+    "type": "Body parts"
+  },
+  {
+    "name": "lower arms",
+    "type": "Body parts",
+    "imgUrl": "https://ftp.goit.study/img/power-pulse/filters/lower_arms_hvwarx.jpg"
+  },
+  {
+    "type": "Body parts",
+    "name": "lower legs",
+    "imgUrl": "https://ftp.goit.study/img/power-pulse/filters/lower_legs_thafch.jpg"
+  },
+  {
+    "name": "neck",
+    "imgUrl": "https://ftp.goit.study/img/power-pulse/filters/neck_t0fc1k.jpg",
+    "type": "Body parts"
+  },
+  {
+    "name": "shoulders",
+    "type": "Body parts",
+    "imgUrl": "https://ftp.goit.study/img/power-pulse/filters/shoulders_deqz9d.jpg"
+  },
+  {
+    "name": "upper arms",
+    "imgUrl": "https://ftp.goit.study/img/power-pulse/filters/upper_arms_xsndlt.jpg",
+    "type": "Body parts"
+  },
+  {
+    "name": "upper legs",
+    "type": "Body parts",
+    "imgUrl": "https://ftp.goit.study/img/power-pulse/filters/upper_legs_dlkfwx.jpg"
+  },
+  {
+    "type": "Body parts",
+    "imgUrl": "https://ftp.goit.study/img/power-pulse/filters/waist_i7kqzq.jpg",
+    "name": "waist"
+  },
+  {
+    "name": "assisted",
+    "imgUrl": "https://ftp.goit.study/img/power-pulse/filters/assisted_gukduh.jpg",
+    "type": "Equipment"
+  },
+  {
+    "type": "Equipment",
+    "name": "band",
+    "imgUrl": "https://ftp.goit.study/img/power-pulse/filters/band_ri4mww.jpg"
+  },
+  {
+    "imgUrl": "https://ftp.goit.study/img/power-pulse/filters/barbell_tw7rra.jpg",
+    "name": "barbell",
+    "type": "Equipment"
+  },
+  {
+    "name": "body weight",
+    "type": "Equipment",
+    "imgUrl": "https://ftp.goit.study/img/power-pulse/filters/body_weight_ofngta.jpg"
+  },
+  {
+    "name": "bosu ball",
+    "type": "Equipment",
+    "imgUrl": "https://ftp.goit.study/img/power-pulse/filters/bosu_ball_t8sjw4.jpg"
+  },
+  {
+    "name": "cable",
+    "imgUrl": "https://ftp.goit.study/img/power-pulse/filters/cable_awly7r.jpg",
+    "type": "Equipment"
+  },
+  {
+    "type": "Equipment",
+    "name": "dumbbell",
+    "imgUrl": "https://ftp.goit.study/img/power-pulse/filters/dumbbell_uakfyd.jpg"
+  },
+  {
+    "name": "elliptical machine",
+    "type": "Equipment",
+    "imgUrl": "https://ftp.goit.study/img/power-pulse/filters/elliptical_machine_wgwuxq.jpg"
+  },
+  {
+    "imgUrl": "https://ftp.goit.study/img/power-pulse/filters/ez_barbell_vjkcrp.jpg",
+    "type": "Equipment",
+    "name": "ez barbell"
+  },
+  {
+    "type": "Equipment",
+    "name": "hammer",
+    "imgUrl": "https://ftp.goit.study/img/power-pulse/filters/hammer_rkogqp.jpg"
+  },
+  {
+    "type": "Equipment",
+    "name": "kettlebell",
+    "imgUrl": "https://ftp.goit.study/img/power-pulse/filters/kettlebell_tnr2tr.jpg"
+  },
+  {
+    "name": "leverage machine",
+    "imgUrl": "https://ftp.goit.study/img/power-pulse/filters/leverage_machine_rd01zw.jpg",
+    "type": "Equipment"
+  },
+  {
+    "name": "medicine ball",
+    "type": "Equipment",
+    "imgUrl": "https://ftp.goit.study/img/power-pulse/filters/medicine_ball_qx2iff.jpg"
+  },
+  {
+    "type": "Equipment",
+    "imgUrl": "https://ftp.goit.study/img/power-pulse/filters/olympic_barbell_dgwotc.jpg",
+    "name": "olympic barbell"
+  },
+  {
+    "name": "resistance band",
+    "imgUrl": "https://ftp.goit.study/img/power-pulse/filters/resistance_band_alzbui.jpg",
+    "type": "Equipment"
+  },
+  {
+    "name": "roller",
+    "type": "Equipment",
+    "imgUrl": "https://ftp.goit.study/img/power-pulse/filters/roller_orqjiv.jpg"
+  },
+  {
+    "name": "rope",
+    "type": "Equipment",
+    "imgUrl": "https://ftp.goit.study/img/power-pulse/filters/rope_msaxz6.jpg"
+  },
+  {
+    "imgUrl": "https://ftp.goit.study/img/power-pulse/filters/skierg_machine_sfkvol.jpg",
+    "name": "skierg machine",
+    "type": "Equipment"
+  },
+  {
+    "imgUrl": "https://ftp.goit.study/img/power-pulse/filters/sled_machine_p5sld7.jpg",
+    "type": "Equipment",
+    "name": "sled machine"
+  },
+  {
+    "imgUrl": "https://ftp.goit.study/img/power-pulse/filters/smith_machine_i6mzcj.jpg",
+    "name": "smith machine",
+    "type": "Equipment"
+  },
+  {
+    "type": "Equipment",
+    "imgUrl": "https://ftp.goit.study/img/power-pulse/filters/stability_ball_nylava.jpg",
+    "name": "stability ball"
+  },
+  {
+    "name": "stationary bike",
+    "type": "Equipment",
+    "imgUrl": "https://ftp.goit.study/img/power-pulse/filters/stationary_bike_fujliq.jpg"
+  },
+  {
+    "imgUrl": "https://ftp.goit.study/img/power-pulse/filters/stepmill_machine_mcp0wg.jpg",
+    "name": "stepmill machine",
+    "type": "Equipment"
+  },
+  {
+    "name": "tire",
+    "type": "Equipment",
+    "imgUrl": "https://ftp.goit.study/img/power-pulse/filters/tire_cphxqu.jpg"
+  },
+  {
+    "type": "Equipment",
+    "name": "trap bar",
+    "imgUrl": "https://ftp.goit.study/img/power-pulse/filters/trap_bar_o6xdf7.jpg"
+  },
+  {
+    "name": "upper body ergometer",
+    "type": "Equipment",
+    "imgUrl": "https://ftp.goit.study/img/power-pulse/filters/upper_body_ergometer_nvd50h.jpg"
+  },
+  {
+    "name": "weighted",
+    "type": "Equipment",
+    "imgUrl": "https://ftp.goit.study/img/power-pulse/filters/weighted_w83gye.jpg"
+  },
+  {
+    "name": "wheel roller",
+    "type": "Equipment",
+    "imgUrl": "https://ftp.goit.study/img/power-pulse/filters/wheel_roller_qqxaoi.jpg"
+  },
+  {
+    "type": "Muscles",
+    "name": "abductors",
+    "imgUrl": "https://ftp.goit.study/img/power-pulse/filters/abductors_ymfukx.jpg"
+  },
+  {
+    "type": "Muscles",
+    "imgUrl": "https://ftp.goit.study/img/power-pulse/filters/abs_bdi0dw.jpg",
+    "name": "abs"
+  },
+  {
+    "name": "adductors",
+    "imgUrl": "https://ftp.goit.study/img/power-pulse/filters/adductors_fmkryf.jpg",
+    "type": "Muscles"
+  },
+  {
+    "name": "biceps",
+    "imgUrl": "https://ftp.goit.study/img/power-pulse/filters/biceps_rnrxog.jpg",
+    "type": "Muscles"
+  },
+  {
+    "name": "calves",
+    "type": "Muscles",
+    "imgUrl": "https://ftp.goit.study/img/power-pulse/filters/calves_vzdk8o.jpg"
+  },
+  {
+    "type": "Muscles",
+    "imgUrl": "https://ftp.goit.study/img/power-pulse/filters/cardiovascular_system_ooip0r.jpg",
+    "name": "cardiovascular system"
+  },
+  {
+    "name": "delts",
+    "imgUrl": "https://ftp.goit.study/img/power-pulse/filters/delts_ui5hy5.jpg",
+    "type": "Muscles"
+  },
+  {
+    "type": "Muscles",
+    "imgUrl": "https://ftp.goit.study/img/power-pulse/filters/forearms_bw15z9.jpg",
+    "name": "forearms"
+  },
+  {
+    "type": "Muscles",
+    "name": "glutes",
+    "imgUrl": "https://ftp.goit.study/img/power-pulse/filters/glutes_dtcdzf.jpg"
+  },
+  {
+    "type": "Muscles",
+    "name": "hamstrings",
+    "imgUrl": "https://ftp.goit.study/img/power-pulse/filters/hamstrings_i5rz3w.jpg"
+  },
+  {
+    "type": "Muscles",
+    "imgUrl": "https://ftp.goit.study/img/power-pulse/filters/lats_zolre8.jpg",
+    "name": "lats"
+  },
+  {
+    "type": "Muscles",
+    "name": "levator scapulae",
+    "imgUrl": "https://ftp.goit.study/img/power-pulse/filters/levator_scapulae_v7bfsw.jpg"
+  },
+  {
+    "name": "pectorals",
+    "imgUrl": "https://ftp.goit.study/img/power-pulse/filters/pectorals_ihwzsc.jpg",
+    "type": "Muscles"
+  },
+  {
+    "imgUrl": "https://ftp.goit.study/img/power-pulse/filters/quads_shix1m.jpg",
+    "name": "quads",
+    "type": "Muscles"
+  },
+  {
+    "imgUrl": "https://ftp.goit.study/img/power-pulse/filters/serratus_anterior_js6osa.jpg",
+    "type": "Muscles",
+    "name": "serratus anterior"
+  },
+  {
+    "imgUrl": "https://ftp.goit.study/img/power-pulse/filters/spine_cwjeuh.jpg",
+    "name": "spine",
+    "type": "Muscles"
+  },
+  {
+    "type": "Muscles",
+    "name": "traps",
+    "imgUrl": "https://ftp.goit.study/img/power-pulse/filters/traps_mshzl0.jpg"
+  },
+  {
+    "imgUrl": "https://ftp.goit.study/img/power-pulse/filters/triceps_koatge.jpg",
+    "type": "Muscles",
+    "name": "triceps"
+  },
+  {
+    "type": "Muscles",
+    "name": "upper back",
+    "imgUrl": "https://ftp.goit.study/img/power-pulse/filters/upper_back_ph9qbd.jpg"
+  }
+]

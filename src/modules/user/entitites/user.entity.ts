@@ -50,7 +50,7 @@ export class User {
   @Field(() => Int, { nullable: true })
   dailyCalorieIntake?: number
 
-  @Field(() => Int)
+  @Field(() => Int, { defaultValue: 110 })
   dailyExerciseTime: number
 
   @Field({ nullable: true })
