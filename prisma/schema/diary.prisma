@@ -1,0 +1,11 @@
+model Diary {
+    id        String          @id @default(cuid())
+    date      DateTime
+    userId    String
+    user      User            @relation(fields: [userId], references: [id])
+    products  DiaryProduct[]
+    exercises DiaryExercise[]
+
+    @@unique([userId, date])
+    @@map("diary")
+}

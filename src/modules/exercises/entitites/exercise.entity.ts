@@ -24,7 +24,7 @@ export class Exercise {
   target: string
 
   @Field(() => Int, { defaultValue: 3 })
-  time = 3
+  duration = 3
 }
 
 @ObjectType()

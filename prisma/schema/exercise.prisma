@@ -1,12 +1,23 @@
 model Exercise {
-    id             String @id @default(cuid())
-    bodyPart       String @map("body_part")
-    burnedCalories Int    @map("burned_calories")
+    id             String          @id @default(cuid())
+    bodyPart       String          @map("body_part")
+    burnedCalories Int             @map("burned_calories")
     equipment      String
-    gifUrl         String @map("gif_url")
+    gifUrl         String          @map("gif_url")
     name           String
     target         String
-    time           Int    @default(3)
+    duration       Int             @default(3)
+    diaryExercises DiaryExercise[]
 
     @@map("exercises")
+}
+
+model DiaryExercise {
+    id             String   @id @default(cuid())
+    diaryId        String   @map("diary_id")
+    diary          Diary    @relation(fields: [diaryId], references: [id])
+    exerciseId     String   @map("exercise_id")
+    exercise       Exercise @relation(fields: [exerciseId], references: [id])
+    duration       Int
+    burnedCalories Int      @map("burned_calories")
 }

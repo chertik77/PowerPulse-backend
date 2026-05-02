@@ -14,6 +14,7 @@ model User {
   dailyCalorieIntake         Int?      @map("daily_calorie_intake")
   dailyExerciseTime          Int?      @default(110) @map("daily_exercise_time")
   avatar                     String?
+  diaries                    Diary[]
 
   @@map("users")
 }

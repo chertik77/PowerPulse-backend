@@ -3,6 +3,7 @@ import { ConfigModule } from '@nestjs/config'
 import { GraphQLModule } from '@nestjs/graphql'
 
 import { AuthModule } from 'modules/auth/auth.module'
+import { DiaryModule } from 'modules/diary/diary.module'
 import { ExercisesModule } from 'modules/exercises/exercises.module'
 import { PrismaModule } from 'modules/prisma/prisma.module'
 import { ProductsModule } from 'modules/products/products.module'
@@ -18,7 +19,8 @@ import { getGraphQLConfig, validate } from 'config'
     AuthModule,
     UserModule,
     ProductsModule,
-    ExercisesModule
+    ExercisesModule,
+    DiaryModule
   ]
 })
 export class AppModule {}

@@ -1,10 +1,21 @@
 model Product {
-  id                   String @id @default(cuid())
+  id                   String         @id @default(cuid())
   weight               Int
   calories             Int
   title                String
   category             String
-  groupBloodNotAllowed Json   @map("group_blood_not_allowed")
+  groupBloodNotAllowed Json           @map("group_blood_not_allowed")
+  diaryProducts        DiaryProduct[]
 
   @@map("products")
+}
+
+model DiaryProduct {
+  id        String  @id @default(cuid())
+  diaryId   String  @map("diary_id")
+  diary     Diary   @relation(fields: [diaryId], references: [id])
+  productId String  @map("product_id")
+  product   Product @relation(fields: [productId], references: [id])
+  weight    Int
+  calories  Int
 }
