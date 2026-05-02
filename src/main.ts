@@ -18,6 +18,8 @@ async function bootstrap() {
 
   const config = app.get(ConfigService<EnvironmentVariables>)
 
+  app.enableShutdownHooks()
+
   app.setGlobalPrefix('api')
 
   app.use(cookieParser())
