@@ -7,6 +7,7 @@ import { DiaryModule } from 'modules/diary/diary.module'
 import { ExercisesModule } from 'modules/exercises/exercises.module'
 import { PrismaModule } from 'modules/prisma/prisma.module'
 import { ProductsModule } from 'modules/products/products.module'
+import { StatisticsModule } from 'modules/statistics/statistics.module'
 import { UserModule } from 'modules/user/user.module'
 
 import { getGraphQLConfig, validate } from 'config'
@@ -20,7 +21,8 @@ import { getGraphQLConfig, validate } from 'config'
     UserModule,
     ProductsModule,
     ExercisesModule,
-    DiaryModule
+    DiaryModule,
+    StatisticsModule
   ]
 })
 export class AppModule {}

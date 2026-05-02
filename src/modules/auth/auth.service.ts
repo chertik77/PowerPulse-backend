@@ -12,16 +12,16 @@ import {
 import { ConfigService } from '@nestjs/config'
 import { JwtService } from '@nestjs/jwt'
 
-import { verify } from 'argon2'
+import { hash, verify } from 'argon2'
 
-import { UserService } from 'modules/user/user.service'
+import { PrismaService } from 'modules/prisma/prisma.service'
 
 @Injectable()
 export class AuthService {
   constructor(
+    private prisma: PrismaService,
     private readonly configService: ConfigService<EnvironmentVariables>,
-    private readonly jwt: JwtService,
-    private readonly userService: UserService
+    private readonly jwt: JwtService
   ) {}
 
   readonly ACCESS_TOKEN_NAME = 'accessToken'
@@ -34,19 +34,24 @@ export class AuthService {
   }
 
   async signup(input: SignupInput, res: Response) {
-    const isUserExists = await this.userService.findOneByEmail(input.email)
+    const isUserExists = await this.prisma.user.findUnique({
+      where: { email: input.email }
+    })
 
     if (isUserExists) throw new ConflictException('User with this email exists')
 
-    const user = await this.userService.createNewUser(input)
+    const user = await this.prisma.user.create({
+      data: { ...input, password: await hash(input.password) }
+    })
 
     await this.issueTokensAndSetCookies(res, user.id)
 
     return { user }
   }
 
-  signin = async (input: SigninInput, res: Response) => {
-    const user = await this.userService.findOneByEmail(input.email, {
+  async signin(input: SigninInput, res: Response) {
+    const user = await this.prisma.user.findUnique({
+      where: { email: input.email },
       omit: { password: false }
     })
 
@@ -67,21 +72,21 @@ export class AuthService {
     return { user: userWithoutPassword }
   }
 
-  refresh = async (refreshToken: string | undefined, res: Response) => {
+  async refresh(refreshToken: string | undefined, res: Response) {
     if (!refreshToken) throw new ForbiddenException()
 
     const result = await this.jwt.verifyAsync(refreshToken)
 
     if (!result) throw new UnauthorizedException()
 
-    const user = await this.userService.findById(result.id)
+    const user = await this.prisma.user.findUnique({ where: { id: result.id } })
 
     if (!user) throw new UnauthorizedException()
 
     await this.issueTokensAndSetCookies(res, user.id)
   }
 
-  logout = async (res: Response) => {
+  async logout(res: Response) {
     res.clearCookie(this.ACCESS_TOKEN_NAME, this.COOKIE_OPTIONS)
     res.clearCookie(this.REFRESH_TOKEN_NAME, this.COOKIE_OPTIONS)
 

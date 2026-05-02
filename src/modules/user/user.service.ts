@@ -1,5 +1,3 @@
-import type { Prisma } from 'generated/prisma/client'
-import type { SignupInput } from 'modules/auth/inputs/signup-input'
 import type { CalculateDailyIntakeInput } from './inputs/calculate-daily-intake.input'
 import type { UpdateUserInput } from './inputs/update-user.input'
 
@@ -10,7 +8,6 @@ import {
   UnprocessableEntityException
 } from '@nestjs/common'
 
-import { hash } from 'argon2'
 import { v2 as cloudinary } from 'cloudinary'
 
 import { PrismaService } from 'modules/prisma/prisma.service'
@@ -74,21 +71,8 @@ export class UserService {
     return user
   }
 
-  async createNewUser(input: SignupInput) {
-    return await this.prisma.user.create({
-      data: { ...input, password: await hash(input.password) }
-    })
-  }
-
   async findById(id: string) {
-    return await this.prisma.user.findFirst({ where: { id } })
-  }
-
-  async findOneByEmail(
-    email: string,
-    options?: Omit<Prisma.UserFindUniqueArgs, 'where'>
-  ) {
-    return await this.prisma.user.findUnique({ ...options, where: { email } })
+    return await this.prisma.user.findUnique({ where: { id } })
   }
 
   private getBasalMetabolicRateByGender({

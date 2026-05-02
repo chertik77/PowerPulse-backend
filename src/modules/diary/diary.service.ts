@@ -25,7 +25,7 @@ type DiaryWithIncludes = Prisma.DiaryGetPayload<{
 export class DiaryService {
   constructor(private prisma: PrismaService) {}
 
-  getDiary = async (user: User, { date }: GetDiaryInput) => {
+  async getDiary(user: User, { date }: GetDiaryInput) {
     // Reset time to 0 for diary date comparisons
     const normalizedDate = new Date(date)
     normalizedDate.setHours(0, 0, 0, 0)
@@ -76,10 +76,10 @@ export class DiaryService {
     }
   }
 
-  addProductToDiary = async (
+  async addProductToDiary(
     userId: string,
     { productId, date, weight, calories }: AddProductInput
-  ) => {
+  ) {
     const diary = await this.prisma.diary.upsert({
       where: { userId_date: { userId, date } },
       update: {},
@@ -99,10 +99,10 @@ export class DiaryService {
     return diaryProduct
   }
 
-  addExerciseToDiary = async (
+  async addExerciseToDiary(
     userId: string,
     { exerciseId, date, duration, burnedCalories }: AddExerciseInput
-  ) => {
+  ) {
     const diary = await this.prisma.diary.upsert({
       where: { userId_date: { userId, date } },
       update: {},
@@ -127,10 +127,7 @@ export class DiaryService {
     return diaryExercise
   }
 
-  removeProductFromDiary = async ({
-    diaryId,
-    productId
-  }: RemoveProductInput) => {
+  async removeProductFromDiary({ diaryId, productId }: RemoveProductInput) {
     const diary = await this.prisma.diary.findUnique({ where: { id: diaryId } })
 
     if (!diary) throw new NotFoundException('Diary not found')
@@ -146,10 +143,7 @@ export class DiaryService {
     return true
   }
 
-  removeExerciseFromDiary = async ({
-    diaryId,
-    exerciseId
-  }: RemoveExerciseInput) => {
+  async removeExerciseFromDiary({ diaryId, exerciseId }: RemoveExerciseInput) {
     const diary = await this.prisma.diary.findUnique({ where: { id: diaryId } })
 
     if (!diary) throw new NotFoundException('Diary not found')
