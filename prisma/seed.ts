@@ -1,7 +1,7 @@
 import { PrismaPg } from '@prisma/adapter-pg'
 import { Prisma, PrismaClient } from 'generated/prisma/client'
 
-import products from '../products.json'
+import products from './seeds/data/products.json'
 
 import 'dotenv/config'
 
