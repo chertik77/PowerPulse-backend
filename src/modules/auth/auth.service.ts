@@ -84,6 +84,8 @@ export class AuthService {
   logout = async (res: Response) => {
     res.clearCookie(this.ACCESS_TOKEN_NAME, this.COOKIE_OPTIONS)
     res.clearCookie(this.REFRESH_TOKEN_NAME, this.COOKIE_OPTIONS)
+
+    return true
   }
 
   private async issueTokensAndSetCookies(res: Response, userId: string) {

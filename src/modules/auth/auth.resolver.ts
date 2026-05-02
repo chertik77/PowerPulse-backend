@@ -45,7 +45,6 @@ export class AuthResolver {
 
   @Mutation(() => Boolean)
   async logout(@Context() { res }: { res: Response }) {
-    await this.authService.logout(res)
-    return true
+    return await this.authService.logout(res)
   }
 }
