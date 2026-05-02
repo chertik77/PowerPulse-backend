@@ -1,0 +1,10 @@
+model Product {
+  id                   String @id @default(uuid())
+  weight               Int
+  calories             Int
+  title                String
+  category             String
+  groupBloodNotAllowed Json   @map("group_blood_not_allowed")
+
+  @@map("products")
+}

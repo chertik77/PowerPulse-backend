@@ -5,13 +5,17 @@
     "@prisma/client"
   ],
   "scripts": {
-    "build": "bunx prisma generate && nest build",
+    "build": "bun run db:generate && nest build",
     "format": "prettier --write \"src/**/*.ts\"",
     "format:check": "prettier --check \"src/**/*.ts\"",
-    "start": "bunx prisma migrate deploy && nest start",
+    "start": "bun run db:migrate:deploy && bun run db:seed && nest start",
     "start:dev": "nest start --watch",
     "start:prod": "node dist/src/main",
-    "lint": "eslint --fix"
+    "lint": "eslint --fix",
+    "db:migrate:dev": "bunx prisma migrate dev",
+    "db:migrate:deploy": "bunx prisma migrate deploy",
+    "db:generate": "bunx prisma generate",
+    "db:seed": "bunx prisma db seed"
   },
   "dependencies": {
     "@apollo/server": "^5.5.0",
@@ -66,6 +70,7 @@
     "ts-node": "^10.9.2",
     "tsc-files": "^1.1.4",
     "tsconfig-paths": "^4.2.0",
+    "tsx": "^4.21.0",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.59.1"
   }
