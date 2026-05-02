@@ -1,12 +1,12 @@
-import type { ActivityLevel, Blood } from 'common/constants'
+import type { ActivityLevel } from 'common/constants'
 
-import { Field, InputType, Int } from '@nestjs/graphql'
+import { Field, GraphQLISODateTime, InputType, Int } from '@nestjs/graphql'
 
 import { Type } from 'class-transformer'
 import { IsDate, IsEnum, IsIn, IsNumber, Min } from 'class-validator'
-import { Sex } from 'generated/prisma/enums'
+import { Blood, Sex } from 'generated/prisma/enums'
 
-import { ACTIVITY_LEVEL, BLOOD } from 'common/constants'
+import { ACTIVITY_LEVEL } from 'common/constants'
 import { IsMinAge } from 'common/decorators'
 
 @InputType()
@@ -32,11 +32,11 @@ export class CalculateDailyIntakeInput {
   @IsDate()
   @Type(() => Date)
   @IsMinAge(16)
-  @Field()
+  @Field(() => GraphQLISODateTime)
   birthday: Date
 
-  @IsIn(BLOOD)
-  @Field(() => Int)
+  @IsEnum(Blood)
+  @Field(() => Blood)
   blood: Blood
 
   @IsEnum(Sex)

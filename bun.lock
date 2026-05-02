@@ -25,6 +25,7 @@
         "cookie-parser": "^1.4.7",
         "dotenv": "^17.4.2",
         "graphql": "^16.13.2",
+        "graphql-type-json": "^0.3.2",
         "graphql-upload": "^17.0.0",
         "helmet": "^8.1.0",
         "morgan": "^1.10.1",
@@ -924,6 +925,8 @@
     "graphql": ["graphql@16.13.2", "", {}, "sha512-5bJ+nf/UCpAjHM8i06fl7eLyVC9iuNAjm9qzkiu2ZGhM0VscSvS6WDPfAwkdkBuoXGM9FJSbKl6wylMwP9Ktig=="],
 
     "graphql-tag": ["graphql-tag@2.12.6", "", { "dependencies": { "tslib": "^2.1.0" }, "peerDependencies": { "graphql": "^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0" } }, "sha512-FdSNcu2QQcWnM2VNvSCCDCVS5PpPqpzgFT8+GXzqJuoDd0CBncxCY278u4mhRO7tMgo2JjgJA5aZ+nWSQ/Z+xg=="],
+
+    "graphql-type-json": ["graphql-type-json@0.3.2", "", { "peerDependencies": { "graphql": ">=0.8.0" } }, "sha512-J+vjof74oMlCWXSvt0DOf2APEdZOCdubEvGDUAlqH//VBYcOYsGgRW7Xzorr44LvkjiuvecWc8fChxuZZbChtg=="],
 
     "graphql-upload": ["graphql-upload@17.0.0", "", { "dependencies": { "@types/busboy": "^1.5.0", "@types/node": "*", "@types/object-path": "^0.11.1", "busboy": "^1.6.0", "fs-capacitor": "^8.0.0", "http-errors": "^2.0.0", "object-path": "^0.11.8" }, "peerDependencies": { "@types/express": "4.0.29 - 5", "@types/koa": "^2.11.4", "graphql": "^16.3.0" }, "optionalPeers": ["@types/express", "@types/koa"] }, "sha512-AI42S1UR1mdqg+LQ7KqGbrgcf4l9gpPu/R0drM4vSA5C94NfIjYyCeCdpktEledvZoAL8JURLLeB53++WACo1w=="],
 

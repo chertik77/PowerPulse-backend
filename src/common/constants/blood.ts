@@ -1,3 +1,7 @@
-export const BLOOD = [1, 2, 3, 4] as const
+export const RECOMMENDED_BY_BLOOD = [
+  'All',
+  'Recommended',
+  'Not Recommended'
+] as const
 
-export type Blood = (typeof BLOOD)[number]
+export type RecommendedByBlood = (typeof RECOMMENDED_BY_BLOOD)[number]

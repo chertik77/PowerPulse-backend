@@ -3,11 +3,13 @@ import { PrismaClient } from 'generated/prisma/client'
 
 import {
   deleteIgnoreNotFoundExtension,
+  findManyAndCountExtension,
   updateIgnoreNotFoundExtension
 } from './extensions'
 
 const extendClient = (base: PrismaClient) =>
   base
+    .$extends(findManyAndCountExtension)
     .$extends(updateIgnoreNotFoundExtension)
     .$extends(deleteIgnoreNotFoundExtension)
 

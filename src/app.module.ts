@@ -4,6 +4,7 @@ import { GraphQLModule } from '@nestjs/graphql'
 
 import { AuthModule } from 'modules/auth/auth.module'
 import { PrismaModule } from 'modules/prisma/prisma.module'
+import { ProductsModule } from 'modules/products/products.module'
 import { UserModule } from 'modules/user/user.module'
 
 import { getGraphQLConfig, validate } from 'config'
@@ -14,7 +15,8 @@ import { getGraphQLConfig, validate } from 'config'
     GraphQLModule.forRoot(getGraphQLConfig()),
     PrismaModule,
     AuthModule,
-    UserModule
+    UserModule,
+    ProductsModule
   ]
 })
 export class AppModule {}

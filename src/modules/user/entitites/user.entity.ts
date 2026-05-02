@@ -1,9 +1,15 @@
-import { Field, ID, Int, ObjectType, registerEnumType } from '@nestjs/graphql'
+import {
+  Field,
+  GraphQLISODateTime,
+  ID,
+  Int,
+  ObjectType,
+  registerEnumType
+} from '@nestjs/graphql'
 
-import { Sex } from 'generated/prisma/enums'
+import { Blood, Sex } from 'generated/prisma/enums'
 
-import { Blood } from 'common/constants'
-
+registerEnumType(Blood, { name: 'Blood' })
 registerEnumType(Sex, { name: 'Sex' })
 
 @ObjectType()
@@ -26,13 +32,13 @@ export class User {
   @Field(() => Int, { nullable: true })
   desiredWeight?: number
 
-  @Field({ nullable: true })
+  @Field(() => GraphQLISODateTime, { nullable: true })
   birthday?: Date
 
   @Field(() => Sex, { nullable: true })
   sex?: Sex
 
-  @Field(() => Int, { nullable: true })
+  @Field(() => Blood, { nullable: true })
   blood?: Blood
 
   @Field()
