@@ -10,6 +10,7 @@ export const getGraphQLConfig = (): ApolloDriverConfig => ({
   driver: ApolloDriver,
   autoSchemaFile: true,
   graphiql: true,
+  introspection: process.env.NODE_ENV === 'development',
   resolvers: { JSON: GraphQLJSON },
   context: ({ req, res }: { req: Request; res: Response }) => ({
     req,

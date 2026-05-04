@@ -11,10 +11,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository 🛎️
+      - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Use Node.js 22 🚀
+      - name: Use Node.js 22
         uses: actions/setup-node@v4
         with:
           node-version: 22
@@ -22,14 +22,14 @@ jobs:
       - name: Setup bun
         uses: oven-sh/setup-bun@v2
 
-      - name: Installing dependencies 📦
+      - name: Installing dependencies
         run: bun i
 
-      - name: Run Linter 🔧
+      - name: Run Linter
         run: bun lint
 
-      - name: Verify Code Formatting 📝
+      - name: Verify Code Formatting
         run: bun format:check
 
-      - name: Enforce Conventional Commits 🔒
+      - name: Enforce Conventional Commits
         uses: webiny/action-conventional-commits@v1.1.0
