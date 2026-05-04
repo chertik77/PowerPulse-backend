@@ -7,7 +7,6 @@ import {
   IsNumber,
   IsPositive,
   IsString,
-  IsUrl,
   Max,
   Min,
   validateSync
@@ -39,7 +38,6 @@ export class EnvironmentVariables {
 
   @Transform(({ value }) => value.split(','))
   @IsArray()
-  @IsUrl({ host_whitelist: ['localhost'] }, { each: true })
   public readonly ALLOWED_ORIGINS: string[]
 
   @IsString()
