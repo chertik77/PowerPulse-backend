@@ -46,7 +46,7 @@ export class AuthService {
 
     await this.issueTokensAndSetCookies(res, user.id)
 
-    return { user }
+    return true
   }
 
   async signin(input: SigninInput, res: Response) {
@@ -57,11 +57,11 @@ export class AuthService {
 
     if (!user) throw new UnauthorizedException('Email or password invalid')
 
-    const { password, ...userWithoutPassword } = user
+    if (!user.password) {
+      throw new UnauthorizedException('Email or password invalid')
+    }
 
-    if (!password) throw new UnauthorizedException('Email or password invalid')
-
-    const isPasswordMatch = await verify(password, input.password)
+    const isPasswordMatch = await verify(user.password, input.password)
 
     if (!isPasswordMatch) {
       throw new UnauthorizedException('Email or password invalid')
@@ -69,7 +69,7 @@ export class AuthService {
 
     await this.issueTokensAndSetCookies(res, user.id)
 
-    return { user: userWithoutPassword }
+    return true
   }
 
   async refresh(refreshToken: string | undefined, res: Response) {

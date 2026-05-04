@@ -6,7 +6,6 @@ import { Args, Context, Mutation, Resolver } from '@nestjs/graphql'
 import { JwtAuthGuard } from 'common/guards'
 
 import { AuthService } from './auth.service'
-import { AuthResponse } from './entitites/auth.entity'
 import { SigninInput } from './inputs/signin-input'
 import { SignupInput } from './inputs/signup-input'
 
@@ -14,7 +13,7 @@ import { SignupInput } from './inputs/signup-input'
 export class AuthResolver {
   constructor(private readonly authService: AuthService) {}
 
-  @Mutation(() => AuthResponse)
+  @Mutation(() => Boolean)
   async signup(
     @Args('input') input: SignupInput,
     @Context() { res }: { res: Response }
@@ -22,7 +21,7 @@ export class AuthResolver {
     return await this.authService.signup(input, res)
   }
 
-  @Mutation(() => AuthResponse)
+  @Mutation(() => Boolean)
   async signin(
     @Args('input') input: SigninInput,
     @Context() { res }: { res: Response }
