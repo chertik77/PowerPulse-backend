@@ -31,7 +31,8 @@ export class AuthService {
   readonly COOKIE_OPTIONS: CookieOptions = {
     httpOnly: true,
     secure: this.configService.get('NODE_ENV') === 'production',
-    sameSite: 'none' //! TEMPORARY
+    sameSite:
+      this.configService.get('NODE_ENV') === 'production' ? 'none' : 'lax' //! TEMPORARY
   }
 
   async signup(input: SignupInput, res: Response) {
