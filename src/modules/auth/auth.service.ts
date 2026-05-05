@@ -13,6 +13,7 @@ import { ConfigService } from '@nestjs/config'
 import { JwtService } from '@nestjs/jwt'
 
 import { hash, verify } from 'argon2'
+import { User } from 'generated/prisma/client'
 
 import { PrismaService } from 'modules/prisma/prisma.service'
 
@@ -30,7 +31,7 @@ export class AuthService {
   readonly COOKIE_OPTIONS: CookieOptions = {
     httpOnly: true,
     secure: this.configService.get('NODE_ENV') === 'production',
-    sameSite: 'lax'
+    sameSite: 'none' //! TEMPORARY
   }
 
   async signup(input: SignupInput, res: Response) {
@@ -44,7 +45,7 @@ export class AuthService {
       data: { ...input, password: await hash(input.password) }
     })
 
-    await this.issueTokensAndSetCookies(res, user.id)
+    await this.issueTokensAndSetCookies(res, user)
 
     return true
   }
@@ -67,7 +68,7 @@ export class AuthService {
       throw new UnauthorizedException('Email or password invalid')
     }
 
-    await this.issueTokensAndSetCookies(res, user.id)
+    await this.issueTokensAndSetCookies(res, user)
 
     return true
   }
@@ -83,7 +84,7 @@ export class AuthService {
 
     if (!user) throw new UnauthorizedException()
 
-    await this.issueTokensAndSetCookies(res, user.id)
+    await this.issueTokensAndSetCookies(res, user)
   }
 
   async logout(res: Response) {
@@ -93,8 +94,11 @@ export class AuthService {
     return true
   }
 
-  private async issueTokensAndSetCookies(res: Response, userId: string) {
-    const data = { id: userId }
+  private async issueTokensAndSetCookies(
+    res: Response,
+    { id, isDailyIntakeFormCompleted }: User
+  ) {
+    const data = { id, isDailyIntakeFormCompleted }
 
     const accessToken = this.jwt.sign(data, {
       expiresIn: this.configService.get('ACCESS_TOKEN_EXPIRES_IN')

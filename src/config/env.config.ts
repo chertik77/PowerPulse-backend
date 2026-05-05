@@ -24,7 +24,10 @@ export class EnvironmentVariables {
   public readonly DATABASE_URL: string
 
   @IsString()
-  public readonly JWT_SECRET: string
+  public readonly JWT_PUBLIC_KEY: string
+
+  @IsString()
+  public readonly JWT_PRIVATE_KEY: string
 
   @IsString()
   public readonly ACCESS_TOKEN_EXPIRES_IN: StringValue

@@ -6,5 +6,7 @@ import { ConfigService } from '@nestjs/config'
 export const getJwtConfig = async (
   configService: ConfigService<EnvironmentVariables>
 ): Promise<JwtModuleOptions> => ({
-  secret: configService.get('JWT_SECRET')
+  publicKey: configService.get('JWT_PUBLIC_KEY'),
+  privateKey: configService.get('JWT_PRIVATE_KEY'),
+  signOptions: { algorithm: 'RS256' }
 })

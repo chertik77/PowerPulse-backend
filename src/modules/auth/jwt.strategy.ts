@@ -21,7 +21,8 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     super({
       jwtFromRequest: ExtractJwt.fromExtractors([cookieExtractor]),
       ignoreExpiration: true,
-      secretOrKey: configService.getOrThrow('JWT_SECRET')
+      secretOrKey: configService.getOrThrow('JWT_PUBLIC_KEY'),
+      algorithms: ['RS256']
     })
   }
   async validate({ id }: { id: string }) {
