@@ -1,5 +1,4 @@
 import type { EnvironmentVariables } from 'config'
-import type { Request } from 'express'
 
 import { Injectable } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
@@ -9,20 +8,20 @@ import { ExtractJwt, Strategy } from 'passport-jwt'
 
 import { UserService } from 'modules/user/user.service'
 
-const cookieExtractor = (req: Request): string | null =>
-  req.cookies?.accessToken ?? null
-
 @Injectable()
-export class JwtStrategy extends PassportStrategy(Strategy) {
+export class JwtRefreshStrategy extends PassportStrategy(
+  Strategy,
+  'jwt-refresh'
+) {
   constructor(
     private readonly configService: ConfigService<EnvironmentVariables>,
     private readonly userService: UserService
   ) {
     super({
-      jwtFromRequest: ExtractJwt.fromExtractors([cookieExtractor]),
-      ignoreExpiration: true,
-      secretOrKey: configService.getOrThrow('JWT_PUBLIC_KEY'),
-      algorithms: ['RS256']
+      jwtFromRequest: ExtractJwt.fromExtractors([
+        req => req.cookies.refreshToken
+      ]),
+      secretOrKey: configService.getOrThrow('JWT_SECRET')
     })
   }
   async validate({ id }: { id: string }) {

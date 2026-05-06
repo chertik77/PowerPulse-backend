@@ -3,7 +3,7 @@ import type { Request, Response } from 'express'
 import { UseGuards } from '@nestjs/common'
 import { Args, Context, Mutation, Resolver } from '@nestjs/graphql'
 
-import { JwtAuthGuard } from 'common/guards'
+import { JwtRefreshGuard } from 'common/guards'
 
 import { AuthService } from './auth.service'
 import { SigninInput } from './inputs/signin-input'
@@ -29,7 +29,7 @@ export class AuthResolver {
     return await this.authService.signin(input, res)
   }
 
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtRefreshGuard)
   @Mutation(() => Boolean)
   async refreshTokens(
     @Context() { req, res }: { req: Request; res: Response }
